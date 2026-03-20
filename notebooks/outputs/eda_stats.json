@@ -1,0 +1,90 @@
+{
+  "debatesum_topics": 10000,
+  "debatesum_args": 187000,
+  "debatesum_avg_args_topic": 18.7,
+  "whichside_topics": 14000,
+  "whichside_args": 28000,
+  "whichside_avg_args_topic": 2.0,
+  "humantest_topics": 200,
+  "apt_mean": 18.7,
+  "apt_median": 17.0,
+  "apt_std": 9.5,
+  "apt_min": 1,
+  "apt_max": 80,
+  "n_topics_kept": 9864,
+  "n_topics_dropped": 136,
+  "pct_topics_kept": 98.6,
+  "filter_threshold": 4,
+  "trunc_token_limit": 256,
+  "mean_raw_tokens": 252.0,
+  "mean_trunc_tokens": 153.0,
+  "pct_args_truncated": 34.2,
+  "quality_mean": 0.506,
+  "quality_std": 0.229,
+  "stance_balance": 0.93,
+  "api_calls_4ag_50topics": 6600,
+  "api_calls_4ag_200topics": 26400,
+  "api_calls_6ag_200topics": 61200,
+  "baseline_acc_lo": 55,
+  "baseline_acc_hi": 60,
+  "baseline_acc_mid": 57,
+  "full_acc_lo": 78,
+  "full_acc_hi": 85,
+  "full_acc_mid": 82,
+  "graph_gain_pp": 18,
+  "agent_gain_pp": 10,
+  "total_gain_pp": 25,
+  "human_upper_acc": 92,
+  "human_upper_pers": 4.8,
+  "ablation_configs": [
+    {
+      "name": "Single-LLM Baseline",
+      "acc_lo": 55,
+      "acc_mid": 57,
+      "acc_hi": 60,
+      "pers": 2.8
+    },
+    {
+      "name": "+ 2 Agents",
+      "acc_lo": 59,
+      "acc_mid": 62,
+      "acc_hi": 65,
+      "pers": 3.2
+    },
+    {
+      "name": "+ 5 Agents",
+      "acc_lo": 64,
+      "acc_mid": 67,
+      "acc_hi": 70,
+      "pers": 3.6
+    },
+    {
+      "name": "+ Targeted Attacks",
+      "acc_lo": 68,
+      "acc_mid": 71,
+      "acc_hi": 74,
+      "pers": 3.9
+    },
+    {
+      "name": "+ Dung Graph (no agents)",
+      "acc_lo": 73,
+      "acc_mid": 75,
+      "acc_hi": 77,
+      "pers": 3.5
+    },
+    {
+      "name": "Full Pipeline",
+      "acc_lo": 78,
+      "acc_mid": 82,
+      "acc_hi": 85,
+      "pers": 4.3
+    },
+    {
+      "name": "Human Upper Bound",
+      "acc_lo": 89,
+      "acc_mid": 92,
+      "acc_hi": 95,
+      "pers": 4.8
+    }
+  ]
+}
