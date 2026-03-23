@@ -31,7 +31,7 @@ At this stage, this repository is intentionally focused on **data understanding 
 ## Repository Structure
 
 - `notebooks/0_MAJ_Debate_EDA_Pipeline.ipynb`: Main EDA notebook
-- `notebooks/outputs/`: Generated EDA artifacts (figures + JSON outputs)
+- `outputs/eda/`: Generated EDA artifacts (figures + JSON outputs)
 - `proposal/`: Main proposal sources in LaTeX format (`MAJ_Debate_Proposal.tex`, bibliography, style files)
 - `requirements.txt`: Python dependencies
 - `.env`: Local environment variables (not required for current EDA-only workflow)
@@ -67,8 +67,8 @@ Run cells from top to bottom.
 ## Outputs
 
 After execution, the notebook writes outputs under:
-- `notebooks/outputs/figures/` (plots)
-- `notebooks/outputs/eda_stats.json` (key metrics for reporting)
+- `outputs/eda/figures/` (plots)
+- `outputs/eda/eda_stats.json` (key metrics for reporting)
 
 ## Reproducibility Notes
 

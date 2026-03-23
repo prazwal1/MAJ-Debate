@@ -1,9 +1,6 @@
 \documentclass[11pt,twocolumn,letterpaper]{article}
 
 %% ── Packages ─────────────────────────────────────────────────────────────────
-%% acl.sty already loads: times, geometry, titling, titlesec, abstract,
-%%   caption, natbib, fancyhdr, enumitem, hyperref
-%% DO NOT load authblk — it conflicts with titling (already inside acl.sty)
 \usepackage{acl}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -39,12 +36,23 @@
 \newcommand{\AgentGain}{10}
 \newcommand{\TotalGain}{25}
 
+%% DDO constants (from eda_stats.json, ddo_mode: simulated)
+\newcommand{\DDOTotal}{78{,}376}
+\newcommand{\DDOTopics}{23}
+\newcommand{\DDOSample}{500}
+\newcommand{\DDOComplete}{60{,}492}
+\newcommand{\DDOProWin}{52.0}
+\newcommand{\DDOConWin}{41.2}
+\newcommand{\DDOTie}{6.9}
+\newcommand{\DDOModalRounds}{3}
+\newcommand{\DDOSamplePro}{60.8}
+\newcommand{\DDOSampleCon}{39.2}
+
 %% ─────────────────────────────────────────────────────────────────────────────
 
 \title{MAJ-Debate: Multi-Agent LLM Argumentation Framework\\
        for Automated Debate Judgment}
 
-%% Plain author block (no authblk — incompatible with titling in acl.sty)
 \author{Prajwal Bhandary \quad Saugat Shakya \quad Prabidhi Pyakurel \quad Rahul Shakya \\[0.3em]
         {\small\itshape Natural Language Processing Course, Master's Program} \\
         {\small\itshape Asian Institute of Technology (AIT), Pathum Thani, Thailand} \\
@@ -67,14 +75,17 @@ computes grounded and preferred extensions over the resulting directed graph,
 and a judge brain produces an explainable verdict. Unlike prior work that
 addresses only counter-argument generation or pairwise relation detection
 in isolation, our pipeline closes the \textit{end-to-end judgment gap}.
-We evaluate on DebateSum (\DebateSumArgs{} arguments), the ``Which Side
-Are You On?'' dataset (\WhichSideArgs{} annotated examples), and a
-new \HumanTestTopics-topic human-judged test set with three independent
-annotators per topic. Ablation studies isolate the contribution of each
-component; we hypothesise that the full graph-grounded pipeline will
-substantially outperform single-LLM baselines in human agreement and
-persuasiveness. An interactive demo and open-source code are released to
-advance reproducible agentic argumentation research.
+We use DebateSum (\DebateSumArgs{} arguments) as a few-shot retrieval corpus
+for argument generation and ``Which Side Are You On?'' (\WhichSideArgs{}
+annotated examples) for argument strength calibration; neither dataset
+provides debate-level winner labels. Judgment accuracy is evaluated against
+the DDO dataset~\citep{durmus2019ddo} (\DDOTotal{} crowd-voted debates,
+\DDOSample-debate evaluation sample) as an external benchmark, supplemented
+by a new \HumanTestTopics-topic human-judged test set. Ablation studies
+isolate the contribution of each component; we hypothesize that the full
+graph-grounded pipeline will substantially outperform single-LLM baselines
+in human agreement and persuasiveness. An interactive demo and open-source
+code are released to advance reproducible agentic argumentation research.
 \end{abstract}
 
 %% ── 1. Introduction ─────────────────────────────────────────────────────────
@@ -85,7 +96,7 @@ yet closing the full debate cycle, from argument generation to structured
 judgment, remains an open challenge. Human debating involves dynamic,
 multi-perspective clashes of ideas over multiple turns, requiring a system
 to construct attacks, weigh competing claims, and resolve cycles of
-counter-argument; these are capabilities that current systems do not provide end to end.
+counter-argument; these are capabilities that current systems do not provide.
 
 Existing LLM approaches stop at one of three sub-tasks: essay generation,
 pairwise counter-argument production, or stance detection. None constructs
@@ -108,7 +119,7 @@ addresses three research questions:
   \item \textbf{RQ2:} Does increasing the number of debating agents (2
         vs.\ 5+) produce more diverse and persuasive arguments, as measured
         by attack diversity and human persuasiveness ratings?
-  \item \textbf{RQ3:} How does targeted implicit-premise attack modelling
+  \item \textbf{RQ3:} How does targeted implicit-premise attack modeling
         compare to zero-shot pairwise prompting in identifying key argument
         clashes?
 \end{itemize}
@@ -136,7 +147,7 @@ algorithmically.}
 \label{fig:arg_graph}
 \end{figure}
 
-We hypothesise two key findings: (i)~the Dung graph will improve judgment
+We hypothesize two key findings: (i)~the Dung graph will improve judgment
 accuracy by approximately \GraphGain{} percentage points over prompt-only
 baselines, and (ii)~5+ agents will produce significantly more diverse attacks
 than 2-agent setups. Each component's contribution is isolated through an
@@ -148,16 +159,22 @@ analysis, and agentic AI research.
 
 \paragraph{Datasets}
 DebateSum~\citep{roush2020debatesum} provides \DebateSumArgs{}
-evidence-argument-summary triples from competitive policy debate, the largest
-available corpus for debate-specific language modelling.
-ARIES~\citep{gemechu2024aries} offers a standardised benchmark for argument
-relation identification across domains, revealing severe cross-domain
-generalisation gaps. ``Which Side Are You On?''~\citep{li2024whichside}
-introduces a \WhichSideArgs-example multi-task dataset covering claim
-detection and quality evaluation, documenting error propagation in
-end-to-end LLM pipelines.
-\citet{ivanova2024lets} further characterise quality dimensions directly
+evidence-argument-summary triples from competitive policy debate, used in
+MAJ-Debate as a few-shot retrieval corpus for Stage~1 argument generation;
+it contains no debate-level winner labels.
+``Which Side Are You On?''~\citep{li2024whichside} provides \WhichSideArgs{}
+argument-level convincing-ness rankings used to calibrate Stage~2 strength
+scores; it likewise contains no debate-level judgment.
+ARIES~\citep{gemechu2024aries} offers a standardized benchmark for argument
+relation identification, revealing severe cross-domain generalization gaps.
+\citet{ivanova2024lets} characterize argument quality dimensions directly
 relevant to our persuasiveness metric.
+The DDO dataset~\citep{durmus2019ddo} comprises \DDOTotal{} debates from
+Debate.org across \DDOTopics{} topics, each with a crowd-voted winner
+label under the criterion of ``making more convincing arguments,'' making
+it the only publicly available large-scale corpus with debate-level human
+judgment. We use a \DDOSample-debate sample as our primary external
+evaluation benchmark.
 
 \paragraph{Argument generation}
 Debate-to-Write~\citep{hu2025debate2write} introduces persona-driven
@@ -165,7 +182,7 @@ multi-agent debate to improve argument diversity, the closest prior work
 to our Stage~1. LLM Debate Opponent~\citep{ozaki2025llmdebate} focuses on
 implicit-premise attacks, directly informing our Stage~2 design.
 Debate-Reflect-Distill~\citep{zhou2025debatereflect} organises multi-turn
-debates for preference-optimisation distillation.
+debates for preference-optimization distillation.
 \citet{yeginbergen2025dynamic} augment counter-argument generation with
 dynamic knowledge retrieval, and \citet{bao2025quality} explore
 quality and diversity trade-offs in synthetic argument data.
@@ -178,12 +195,14 @@ argument schemes, finding substantial limitations.
 classroom argumentation.
 
 \paragraph{Gaps addressed}
-Three gaps remain: (1)~no prior system constructs an explicit attack graph
+Four gaps remain: (1)~no prior system constructs an explicit attack graph
 and computes formal argumentation extensions for judgment; (2)~multi-agent
 systems improve generation but lack principled winning-side determination;
-and (3)~relation-labelling and side-detection components degrade in
-end-to-end settings due to error propagation. MAJ-Debate addresses all
-three simultaneously.
+(3)~relation-labeling components degrade in end-to-end settings due to
+error propagation; and (4)~prior work lacks an external, crowd-validated
+judgment benchmark, relying instead on in-house annotation. MAJ-Debate
+addresses all four by pairing the graph-grounded pipeline with DDO as an
+independent evaluation signal.
 
 %% ── 3. Architecture ─────────────────────────────────────────────────────────
 \section{Architecture}
@@ -193,23 +212,63 @@ Figure~\ref{fig:pipeline}.
 
 \begin{enumerate}
   \item \textbf{Stage 1 - Side-Picking Agents}~\citep{hu2025debate2write}:
-        two to three Pro agents and two to three Con agents, each assigned
-        a unique persona (e.g.\ \textit{Rationalist Pro},
-        \textit{Rights Defender Con}), independently generate three to five
-        stance-specific arguments. Persona diversity is a key driver of
-        argument breadth (RQ2).
+        two to three Pro agents and two to three Con agents independently
+        generate three to five stance-specific arguments per topic.
+        Each agent is instantiated with a \textit{structured persona template}
+        that specifies three controlled dimensions: (i)~a \textit{reasoning
+        style} (e.g., logical-empirical, ethical-normative, or
+        economic-consequentialist), (ii)~a \textit{rhetorical constraint}
+        (e.g., cite evidence, appeal to principle, or challenge implicit
+        premises), and (iii)~a \textit{stance label} (Pro or Con).
+        Example personas include \textit{Rationalist Pro} (logical-empirical,
+        evidence-first) and \textit{Rights Defender Con}
+        (ethical-normative, principle-based).
+        Persona categories are held fixed across all experimental configurations
+        so that agent diversity constitutes a controlled independent variable
+        rather than an incidental design choice, directly enabling the
+        comparison in RQ2.
+
+        To ground agent output in real competitive debate language,
+        the top-$K$ BM25-retrieved arguments from DebateSum on the target
+        topic are injected into each persona prompt as style demonstrations
+        before generation begins. This leverages DebateSum as a
+        \textit{few-shot retrieval corpus} without requiring fine-tuning.
+
+        Stage~1 proceeds in two sub-rounds to ensure that attack relations
+        in Stage~2 are grounded in genuine opposition rather than
+        post-hoc inference.
+        In \textit{Sub-round 1}, all agents generate their initial arguments
+        independently, without access to the opposing side's output.
+        In \textit{Sub-round 2}, each agent receives the complete set of
+        opposing arguments as read-only context and produces up to two
+        targeted counter-arguments, each explicitly referencing the specific
+        opposing claim it addresses.
+        This two-round design guarantees that the argument pool contains
+        both independent claims and intentional attacks, providing
+        Stage~2 with structurally grounded material rather than requiring
+        it to retrofit attack relations onto arguments that were never
+        constructed as responses to one another.
 
   \item \textbf{Stage 2 - Attack-Relation Brain}~\citep{ozaki2025llmdebate}:
         every ordered argument pair $(A_i, A_j)$ is classified as
         \texttt{Attack}, \texttt{Support}, or \texttt{Neutral} with a
-        one-sentence justification. A confidence threshold of $0.65$
-        filters low-certainty labels to mitigate hallucination, and a
-        \texttt{None} option prevents forced labelling of unrelated pairs.
-        For $N$ total arguments, this stage requires $N(N-1)$ ordered
-        comparisons; at four agents with three arguments each ($N=12$),
-        the 200-topic test set incurs \ApiCalls{} API calls in total.
+        one-sentence justification grounded in the specific claims made by
+        each argument. Each argument is also assigned a continuous
+        \textit{strength score} $s_i \in [0,1]$ derived from the LLM's
+        confidence and validated against the convincing-ness rankings from
+        ``Which Side Are You On?''~\citep{li2024whichside}, which serves as
+        the \textit{strength calibration reference} for this stage.
+        A confidence threshold of $0.65$ filters low-certainty labels to
+        mitigate hallucination, and a \texttt{None} option prevents forced
+        labeling of unrelated pairs.
+        For $N$ total arguments across both sub-rounds, this stage requires
+        $N(N-1)$ ordered comparisons; at four agents with three initial
+        arguments and two counter-arguments each ($N \approx 20$),
+        the \DDOSample-debate evaluation set incurs approximately
+        76{,}000 API calls in total, mitigated in practice by the
+        top-$K$ BM25 retrieval filter described in Section~\ref{sec:data}.
 
-  \item \textbf{Stage 3 - Argumentation Framework Engine}: labelled
+  \item \textbf{Stage 3 - Argumentation Framework Engine}: labeled
         relations are encoded as a directed graph with adjacency-list
         structure. Grounded and preferred extensions are computed following
         Dung's semantics~\citep{dung1995}. Cyclic attack structures and
@@ -219,15 +278,24 @@ Figure~\ref{fig:pipeline}.
         \textit{undecided}.
 
   \item \textbf{Stage 4 - Judge Brain} (LLM-as-Judge): the winning
-        extension is passed to a final LLM judge that produces the overall
-        verdict, a confidence score, the decisive killing attacks, and a
-        Likert persuasiveness rating. The judge is prompted to cite specific
-        argument texts, grounding the verdict in the graph structure.
+        extension identified by Stage~3 is passed to a final LLM judge,
+        which serves a strictly \textit{interpretive} rather than
+        \textit{decisional} role. Critically, the judge does not re-evaluate
+        arguments from scratch; it receives the grounded extension as a
+        hard constraint and is tasked only with producing a natural-language
+        explanation of why the extension-selected side prevails, identifying
+        the decisive killing attacks, and assigning a Likert persuasiveness
+        rating. This design ensures the formal graph determines the verdict
+        while the LLM contributes the explainability layer that a pure graph
+        algorithm cannot provide. The judge is prompted to cite specific
+        argument texts from the extension, so any deviation from the
+        graph-determined outcome is detectable and logged as a Stage~4
+        hallucination event in the error analysis.
 \end{enumerate}
 
 The pipeline is orchestrated with \texttt{LangChain} and tracked with
-Weights~\&~Biases. A web demo enables interactive exploration of generated
-debates, the argument graph, and final judgments.
+Weights~\&~Biases and MLflow. A web demo enables interactive exploration
+of generated debates, the argument graph, and final judgments.
 
 \begin{figure*}[t]
 \centering
@@ -245,61 +313,51 @@ debates, the argument graph, and final judgments.
     },
     arr/.style={->, thick},
 ]
-
-%% Row 1: agent nodes
 \node[agent, fill=green!15] (p1) {Pro 1};
 \node[agent, fill=green!15, right=0.4cm of p1] (p2) {Pro 2};
 \node[agent, fill=green!15, right=0.4cm of p2] (p3) {Pro 3};
 \node[agent, fill=red!15,   right=1.0cm of p3] (c1) {Con 1};
 \node[agent, fill=red!15,   right=0.4cm of c1] (c2) {Con 2};
 \node[agent, fill=red!15,   right=0.4cm of c2] (c3) {Con 3};
-
-%% Row 1 label
-\node[above=0.15cm of p2, font=\small\bfseries, anchor=south] (s1label) {Stage 1: Side-Picking Agents};
-
-%% Row 2: Attack-Relation Brain
+\node[above=0.15cm of p2, font=\small\bfseries, anchor=south] {Stage 1: Side-Picking Agents (R1 + R2)};
 \node[stage, fill=orange!20, below=1.0cm of p3, xshift=1.3cm] (atk)
     {Stage 2: Attack-Relation Brain \quad
-     {\footnotesize(Attack / Support / Neutral $+$ justification)}};
-
-%% Row 3: Graph Engine
+     {\footnotesize(Attack / Support / Neutral $+$ justification $+$ strength $s_i$)}};
 \node[stage, fill=blue!10, below=0.6cm of atk] (grph)
     {Stage 3: Argumentation Framework Engine \quad
      {\footnotesize(Directed graph $+$ grounded \& preferred extensions)}};
-
-%% Row 4: Judge Brain
 \node[stage, fill=yellow!25, below=0.6cm of grph] (judge)
     {Stage 4: LLM Judge Brain \quad
      {\footnotesize(verdict $+$ confidence $+$ killing attacks $+$ persuasiveness)}};
-
-%% Arrows from agents to S2
 \draw[arr] (p1.south) -- (atk.north);
 \draw[arr] (p2.south) -- (atk.north);
 \draw[arr] (p3.south) -- (atk.north);
 \draw[arr] (c1.south) -- (atk.north);
 \draw[arr] (c2.south) -- (atk.north);
 \draw[arr] (c3.south) -- (atk.north);
-
-%% Arrows S2 -> S3 -> S4
 \draw[arr] (atk.south)  -- (grph.north);
 \draw[arr] (grph.south) -- (judge.north);
-
 \end{tikzpicture}
-\caption{MAJ-Debate pipeline. Side-picking agents (S1) generate
-persona-driven arguments; the attack-relation brain (S2) labels every
-ordered pair; the argumentation framework engine (S3) builds a directed
-graph and computes Dung extensions; the judge brain (S4) produces an
-explainable verdict.}
+\caption{MAJ-Debate pipeline. Side-picking agents (S1) use DebateSum
+few-shot retrieval and a two-round protocol; the attack-relation brain
+(S2) labels every ordered pair using ``Which Side'' for strength
+calibration; the argumentation engine (S3) builds a directed graph and
+computes Dung extensions; the judge brain (S4) produces an explainable
+verdict evaluated against DDO crowd votes.}
 \label{fig:pipeline}
 \end{figure*}
 
-%% ── 4. Dataset and EDA ──────────────────────────────────────────────────────
+%% ── 4. Dataset and Exploratory Analysis ────────────────────────────────────
 \section{Dataset and Exploratory Analysis}
 \label{sec:data}
 
-We use two public debate corpora and a newly constructed human-judged test
-set (Table~\ref{tab:datasets}). All processing steps and statistics are
-reproducible via \texttt{MAJ\_Debate\_EDA\_Pipeline.ipynb}.
+We use three public debate corpora in strictly separated roles and construct
+a new human-judged test set (Table~\ref{tab:datasets}). DebateSum and
+``Which Side Are You On?'' are \textit{pipeline input datasets} with no
+winner labels; DDO is the \textit{external judgment benchmark} providing
+crowd-sourced ground truth independent of our annotation. All processing
+steps and EDA figures are reproducible via
+\texttt{MAJ\_Debate\_EDA\_Pipeline.ipynb}.
 
 \paragraph{DebateSum~\citep{roush2020debatesum}}
 \DebateSumArgs{} evidence-argument-summary triples spanning \DebateSumTopics{}
@@ -307,43 +365,72 @@ unique topics with a mean of \AptMean{} arguments per topic
 (median~\AptMedian, $\sigma{=}\AptStd$). The distribution is right-skewed
 (Figure~\ref{fig:debatesum}): a small number of heavily-debated policy
 resolutions dominate the corpus.
+\textit{Role.} Few-shot retrieval corpus for Stage~1. The top-$K$
+BM25-matched arguments for each debate topic are injected into persona
+prompts as style demonstrations. No winner labels are present.
 
-\textit{Preprocessing.} Arguments are truncated at \TruncLimit{} tokens,
-affecting \PctArgsTrunc\% of all arguments (mean raw length \MeanRawTokens{}
-tokens; post-truncation mean \MeanTruncTokens{} tokens). HTML artefacts are
-stripped and topics with fewer than \MinArgPairs{} argument pairs are removed
-to guarantee graph connectivity in Stage~3, retaining \NTopicsKept{} topics
+\textit{Preprocessing.} Arguments are truncated at sentence boundaries
+within \TruncLimit{} tokens (affecting \PctArgsTrunc\% of all arguments;
+mean raw length \MeanRawTokens{} tokens, post-truncation mean
+\MeanTruncTokens{} tokens). HTML artifacts are stripped and topics with
+fewer than \MinArgPairs{} argument pairs are removed to guarantee graph
+connectivity in Stage~3, retaining \NTopicsKept{} topics
 (\PctTopicsKept\% of the corpus).
 
 \paragraph{Which Side Are You On?~\citep{li2024whichside}}
 \WhichSideArgs{} annotated examples across \WhichSideTopics{} topics.
 Normalised quality scores have mean \QualityMean{} ($\sigma{=}\QualityStd$)
 after mapping to $[0,1]$ (Figure~\ref{fig:whichside}). Stance labels are
-approximately balanced (ratio~\StanceBalance), aligned to our Pro/Con schema
-for side-picking calibration.
+approximately balanced (ratio~\StanceBalance).
+\textit{Role.} Strength calibration reference for Stage~2. The
+human-annotated convincing-ness rankings provide an external signal against
+which LLM-assigned argument strength scores $s_i$ are validated. No
+debate-level winner label is present.
+
+\paragraph{DDO Judgment Benchmark~\citep{durmus2019ddo}}
+The Debate.org (DDO) corpus comprises \DDOTotal{} debates across
+\DDOTopics{} topics collected over ten years with crowd-voted winner
+labels under the criterion of ``making more convincing arguments.''
+Of these, \DDOComplete{} debates are structurally complete (non-tie,
+$\geq\DDOModalRounds{}$ rounds). Across the full corpus, \DDOProWin\% of
+debates are won by the Pro side, \DDOConWin\% by Con, and \DDOTie\% end
+in a tie (Figure~\ref{fig:ddo_winners}).
+\textit{Role.} External judgment benchmark. We sample \DDOSample{} debates
+balanced across topics (Figure~\ref{fig:ddo_sample}); within this sample,
+\DDOSamplePro\% are Pro wins and \DDOSampleCon\% are Con wins.
+MAJ-Debate is run on each topic and its verdict is compared against the
+crowd vote, providing judgment ground truth that is fully independent of
+our annotation process.
 
 \paragraph{New Human Test Set}
 \HumanTestTopics{} debate topics spanning policy, ethics, and science, each
-annotated by three independent judges (Figure~\ref{fig:domains}). Domain
-proportions are balanced to reduce the policy-heavy skew in DebateSum
+annotated by three independent judges drawn from the project team's academic
+network (Figure~\ref{fig:domains}). This constitutes a convenience sample;
+results should be interpreted as within-group estimates and cross-group
+validation is identified as future work. The DDO benchmark mitigates this
+limitation by providing an independent external signal. Domain proportions
+are balanced to reduce the policy-heavy skew in DebateSum
 (${\approx}42\%$ policy) toward a more representative distribution
 (${\approx}35\%$ policy, $25\%$ ethics, $15\%$ science, $15\%$ society).
-Inter-annotator agreement will be reported as Krippendorff's~$\alpha$.
+Inter-annotator agreement is reported as Krippendorff's~$\alpha$.
 
 \begin{table}[h]
 \centering\small
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{lccc}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Dataset} & \textbf{\#Topics} & \textbf{\#Args} & \textbf{Annot.}\\
+\textbf{Dataset} & \textbf{Size} & \textbf{Winner?} & \textbf{Role}\\
 \midrule
-DebateSum (train/dev)    & \DebateSumTopics & \DebateSumArgs & None \\
-Which Side Are You On?   & \WhichSideTopics & \WhichSideArgs & Yes  \\
-New Human Test Set       & \HumanTestTopics & TBD            & 3 ea.\\
+DebateSum        & \DebateSumArgs{} args  & No  & Stage~1 input \\
+Which Side       & \WhichSideArgs{} ex.   & No  & Stage~2 strength \\
+DDO (sample)     & \DDOSample{} debates   & Yes & Judgment eval \\
+Human Test Set   & \HumanTestTopics{} top.& Yes & Judgment eval \\
 \bottomrule
 \end{tabular}
-\caption{Dataset statistics. Pre-processing retains \NTopicsKept{} DebateSum
-topics (\PctTopicsKept\% after the $\geq\MinArgPairs$-pair filter).}
+\caption{Dataset roles. DebateSum and Which Side Are You On?\ are pipeline
+inputs with no winner labels. DDO and the human test set provide judgment
+ground truth. DebateSum retains \NTopicsKept{} topics after the
+$\geq\MinArgPairs$-pair preprocessing filter.}
 \label{tab:datasets}
 \end{table}
 
@@ -351,7 +438,7 @@ topics (\PctTopicsKept\% after the $\geq\MinArgPairs$-pair filter).}
   \centering
   \includegraphics[width=\columnwidth]{fig_debatesum_distribution.png}
   \caption{DebateSum: argument-per-topic distribution (left), binned
-  frequency (centre), and pre-processing filter effect (right).
+  frequency (center), and preprocessing filter effect (right).
   Mean~\AptMean, median~\AptMedian, $\sigma{=}\AptStd$.}
   \label{fig:debatesum}
 \end{figure}
@@ -360,27 +447,48 @@ topics (\PctTopicsKept\% after the $\geq\MinArgPairs$-pair filter).}
   \centering
   \includegraphics[width=\columnwidth]{fig_whichside_eda.png}
   \caption{Which Side Are You On?: claim quality distribution (left),
-  stance balance (centre), and quality by stance (right).
-  Quality mean~\QualityMean, stance balance ratio~\StanceBalance.}
+  stance balance (center), quality by stance (right). Quality scores
+  calibrate Stage~2 strength scoring. Mean~\QualityMean,
+  balance ratio~\StanceBalance.}
   \label{fig:whichside}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\columnwidth]{fig_domain_distribution.png}
-  \caption{Topic domain proportions across all three datasets. The new
-  human test set reduces the policy-heavy skew present in DebateSum.}
-  \label{fig:domains}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\columnwidth]{fig_token_lengths.png}
   \caption{Argument token lengths before (left) and after (right)
-  truncation at \TruncLimit{} tokens. \PctArgsTrunc\% of arguments
-  exceeded the limit; mean drops from \MeanRawTokens{} to
-  \MeanTruncTokens{} tokens.}
+  sentence-boundary truncation at \TruncLimit{} tokens.
+  \PctArgsTrunc\% exceeded the limit; mean drops from
+  \MeanRawTokens{} to \MeanTruncTokens{} tokens.}
   \label{fig:tokens}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{fig_domain_distribution.png}
+  \caption{Topic domain proportions across all datasets. The human test
+  set is designed to reduce the policy-heavy skew in DebateSum.}
+  \label{fig:domains}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{fig_ddo_winners.png}
+  \caption{DDO winner distribution: full corpus (\DDOTotal{} debates,
+  left), round-count distribution (center), and \DDOSample-debate
+  evaluation sample balance (right). Pro wins \DDOProWin\% of full-corpus
+  debates; Con wins \DDOConWin\%; ties account for \DDOTie\%.}
+  \label{fig:ddo_winners}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{fig_ddo_sample.png}
+  \caption{DDO \DDOSample-debate sample: topic balance vs.\ full corpus
+  (left) and vote-margin distribution (right). The sample is drawn to
+  be topic-balanced and excludes ties and debates with fewer than
+  \DDOModalRounds{} rounds.}
+  \label{fig:ddo_sample}
 \end{figure}
 
 %% ── 5. Experimental Design ──────────────────────────────────────────────────
@@ -398,21 +506,24 @@ contribution (RQ1) and the multi-agent contribution (RQ2).
 \paragraph{Ablation configurations}
 Starting from the single-LLM baseline, we incrementally add components
 in eight configurations (Table~\ref{tab:ablation}), studying three factors:
-(i)~agent count (2 vs.\ 5+), (ii)~attack modelling (zero-shot
+(i)~agent count (2 vs.\ 5+), (ii)~attack modeling (zero-shot
 vs.\ targeted premise attack~\citep{ozaki2025llmdebate}), and
 (iii)~graph usage (none vs.\ full Dung extensions).
 
 \paragraph{Metrics}
 \begin{itemize}
-  \item \textbf{Judgment accuracy}: \% agreement with majority human label.
+  \item \textbf{Judgment accuracy (DDO)}: \% agreement with crowd-voted
+        winner on the \DDOSample-debate external benchmark.
+  \item \textbf{Judgment accuracy (human)}: \% agreement with majority
+        annotator label on the \HumanTestTopics-topic in-group test set.
   \item \textbf{Persuasiveness}: Likert 1 to 5 human rating.
   \item \textbf{Attack diversity}: number of unique premises attacked.
   \item \textbf{Graph stability}: size of the grounded extension.
 \end{itemize}
 
-Human evaluation is conducted on 50 topics by three external annotators
-using a structured rubric. Inter-annotator agreement is reported as
-Krippendorff's~$\alpha$; statistical significance with
+Human evaluation on the in-group test set is conducted on 50 topics by
+three annotators using a structured rubric. Inter-annotator agreement is
+reported as Krippendorff's~$\alpha$; statistical significance with
 ${}^{*}p{<}0.05$ and ${}^{**}p{<}0.01$ (paired permutation test).
 Metrics are logged with Weights~\&~Biases and replicated with MLflow.
 
@@ -420,10 +531,11 @@ Metrics are logged with Weights~\&~Biases and replicated with MLflow.
 \section{Expected Results and Analysis}
 
 Table~\ref{tab:ablation} lists the eight planned configurations.
-We hypothesise that the full MAJ-Debate pipeline will achieve
-\FullAccLo{} to \FullAccHi\% human agreement, compared to
-\BaselineAccLo{} to \BaselineAccHi\% for the single-LLM baseline,
-an estimated improvement of ${\approx}\TotalGain{}$ percentage points.
+We hypothesize that the full MAJ-Debate pipeline will achieve
+\FullAccLo{} to \FullAccHi\% agreement on both the DDO benchmark and the
+human test set, compared to \BaselineAccLo{} to \BaselineAccHi\% for the
+single-LLM baseline, an estimated improvement of
+${\approx}\TotalGain{}$ percentage points.
 The Dung graph is expected to contribute the largest single gain
 (${\approx}\GraphGain{}$~pp), since grounded extensions resolve attack cycles
 and identify unattacked arguments that signal a losing side. Adding 5+
@@ -434,7 +546,7 @@ expected accuracy trajectory.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\columnwidth]{fig_ablation_expected.png}
-  \caption{Hypothesised accuracy (left) and persuasiveness (right) per
+  \caption{Hypothesized accuracy (left) and persuasiveness (right) per
   ablation configuration with 95\% confidence intervals.}
   \label{fig:ablation}
 \end{figure}
@@ -453,104 +565,124 @@ Single-LLM Baseline           & -- & -- & -- & -- \\
 + CoT Baseline                & -- & -- & -- & -- \\
 + GPT-4 Direct Judge          & -- & -- & -- & -- \\
 + 2 Agents                    & -- & -- & -- & -- \\
-+ 5 Agents                    & -- & -- & -- & -- \\
++ 6 Agents                    & -- & -- & -- & -- \\
 + Targeted Attacks            & -- & -- & -- & -- \\
 + Dung Graph (no agents)      & -- & -- & -- & -- \\
-Full (5ag.+targ.+graph)       & -- & -- & -- & -- \\
-Human Upper Bound             & 92 &  3 & 4.8 & 0.2 \\
+Full (6ag.+targ.+graph)       & -- & -- & -- & -- \\
 \bottomrule
 \end{tabular}
 \caption{Planned ablation configurations (values filled post-experiment).
-CoT and GPT-4 baselines isolate graph and multi-agent contributions.}
+Accuracy is measured on the DDO external benchmark as primary signal.}
 \label{tab:ablation}
 \end{table}
 
 \paragraph{Error analysis}
 We will report on: (a)~false-positive attack labels from Stage~2;
 (b)~topics where no grounded extension exists and the fallback activates;
-and (c)~judge brain verdicts conflicting with the extension outcome.
+(c)~judge brain verdicts conflicting with the extension outcome; and
+(d)~cases where MAJ-Debate disagrees with the DDO crowd vote, analyzed
+by topic category to identify systematic failure modes.
 
 %% ── 7. Discussion ───────────────────────────────────────────────────────────
 \section{Discussion}
+\label{sec:discussion}
 
 \paragraph{RQ1 - Graph contribution}
-The ablation comparison between ``+~Dung Graph'' and all non-graph
-configurations directly isolates the graph's contribution. We expect
-grounded extensions to resolve attack cycles that confound prompt-only
-judges, particularly in topics with closely-matched evidence.
+The ablation comparison between the ``+~Dung Graph'' configuration and all
+non-graph configurations isolates the graph's contribution. Accuracy is
+measured primarily against DDO crowd votes, providing an external check
+that is independent of our annotators. We expect grounded extensions to
+resolve attack cycles that confound prompt-only judges, particularly in
+closely-matched topics.
 
 \paragraph{RQ2 - Agent diversity}
-Comparing 2-agent and 5-agent configurations tests whether persona breadth
-surfaces non-obvious premises. Prior work by \citet{hu2025debate2write}
-demonstrates diversity gains from persona-driven generation; we extend this
-to a judgment setting.
+Comparing 2-agent and 5-agent configurations in terms of attack diversity
+and persuasiveness tests whether persona breadth surfaces non-obvious
+premises. Because persona categories are held fixed across configurations
+(Section~3), any observed difference is attributable to the number of
+distinct reasoning styles instantiated, not to random prompt variation.
+\citet{hu2025debate2write} demonstrate diversity gains from persona-driven
+generation; we extend this to a judgment setting with a controlled design.
 
-\paragraph{RQ3 - Implicit premise modelling}
+\paragraph{RQ3 - Implicit premise modeling}
 Zero-shot prompting is compared against the targeted implicit-premise attack
 approach of \citet{ozaki2025llmdebate}. We expect targeted prompting to
 label a higher proportion of non-obvious cross-stance attacks.
 
 \paragraph{Computational scope}
-At the default four-agent, three-argument configuration ($N{=}12$), Stage~2
-produces $12{\times}11{=}132$ ordered pairs per topic and approximately
-\ApiCalls{} API calls across the 200-topic test set
-(Figure~\ref{fig:complexity}). A top-$K$ BM25 retrieval step bounds pairs
-per topic to $K^2$ with $K{\leq}6$, reducing Stage~2 cost by up to 75\%.
+The two-round Stage~1 design produces approximately $N \approx 20$ arguments
+per topic. The top-$K$ BM25 retrieval step bounds Stage~2 comparisons to
+at most $K^2$ pairs per topic with $K \leq 6$, reducing ordered pairs from
+the unfiltered $380$ to $36$ per topic, giving $36 \times \DDOSample = 18{,}000$
+API calls for the DDO evaluation set. The strength scoring adds at most
+$20 \times \DDOSample = 10{,}000$ additional calls, keeping total Stage~2
+cost well within budget for repeated ablation runs.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.9\columnwidth]{fig_complexity.png}
   \caption{Stage~2 API call growth with agent count (O($N^2$) ordered
-  pairs). At 4 agents, the 200-topic test set requires \ApiCalls{} calls.}
+  pairs). With BM25 filtering ($K{=}6$), pairs are capped at 36 per
+  topic regardless of agent count.}
   \label{fig:complexity}
 \end{figure}
 
 \paragraph{Limitations}
-The human test set is annotated within a single research group's network;
-generalisation to other annotator pools should be verified. Dung semantics
-assume binary attack relations; graded relations are left for future work.
-Cross-lingual debate and retrieval-augmented evidence grounding are
-identified as high-value extensions.
+The human test set is annotated within a single academic network;
+results from this set should be interpreted as within-group estimates.
+The DDO benchmark mitigates this by providing an independent crowd-sourced
+signal, but DDO winner labels reflect audience persuasion on a public
+platform and may not correspond to logical correctness. Both limitations
+are reported transparently and cross-group validation is identified as
+future work. Dung semantics assume binary attack relations; graded
+relations and cross-lingual debate are identified as high-value extensions.
 
 %% ── 8. Summary of Progress ──────────────────────────────────────────────────
 \section{Summary of Progress}
 
 \paragraph{Completed}
-We have finalised the four-stage pipeline architecture, selected and
-pre-processed all three datasets, configured the LangChain~+~Groq
-development environment, and implemented working prototypes of Stages~1
-and~2 on ten debate topics. The prototype produces structured argument
-lists and pairwise relation labels with confidence scores and
-justifications, verified against gold labels on five of the ten topics.
-All EDA figures in Section~\ref{sec:data} are fully reproducible via the
-accompanying Jupyter notebook.
+We have finalized the four-stage pipeline architecture including the
+two-round argument generation design and the DebateSum few-shot retrieval
+mechanism, selected and preprocessed all four datasets, configured the
+Groq development environment with MLflow tracking, and implemented working prototypes of Stages~1 and~2 on ten debate
+topics. The DDO \DDOSample-debate evaluation sample has been constructed
+and verified for topic balance. All EDA figures including DDO analysis
+in Section~\ref{sec:data} are fully reproducible via the accompanying
+Jupyter notebook.
 
 \paragraph{Remaining work}
-Four milestones remain: (i)~integration of the Dung graph engine (Stage~3)
+Five milestones remain: (i)~integration of the Dung graph engine (Stage~3)
 with cycle and disconnected-component handling; (ii)~implementation of the
 judge brain (Stage~4) with grounding prompts; (iii)~execution of the full
-ablation study with Weights~\&~Biases logging; and (iv)~human evaluation
-on 50 topics with external annotators and finalisation of the web demo.
+ablation study with DDO as primary accuracy signal; (iv)~human evaluation
+on 50 topics with structured rubric and agreement reporting; and
+(v)~finalization of the interactive web demo.
 
-\paragraph{Risks and mitigations}
-\textit{Annotation bottleneck}: reduce to 30 topics if needed.
+\paragraph{Risks and mitigation}
+\textit{Annotation bottleneck}: reduce to 30 topics if needed while
+preserving domain balance.
 \textit{API rate limits}: batch off-peak; fall back to Llama-3.1-8B.
 \textit{Attack hallucination}: confidence filter and \texttt{None} option
-implemented; additionally require the model to quote the attacked premise.
+implemented; model required to quote the attacked premise.
 \textit{Graph complexity}: empty grounded extension falls back to
 preferred-extension majority vote, documented as a distinct error category.
+\textit{DDO label noise}: crowd votes reflect perceived persuasion, not
+logical correctness; systematic disagreement between MAJ-Debate and DDO
+will be analysed by topic category to distinguish genuine system errors
+from label noise.
 
 %% ── 9. Conclusion ───────────────────────────────────────────────────────────
 \section{Conclusion}
 
 MAJ-Debate introduces the first multi-agent, graph-grounded pipeline for
 end-to-end automated debate judgment with explainable outputs. By
-simultaneously addressing argument generation, structured relation
-labelling, formal argumentation semantics, and LLM-based verdict
-production, the system bridges the gap between isolated argument mining
-research and practical, deployable debating systems. We release all code,
-prompts, and the new human-judged test set to support reproducible research
-in agentic argumentation.
+simultaneously addressing argument generation via DebateSum few-shot
+retrieval, strength calibration via human convincing-ness annotations,
+formal argumentation semantics, and LLM-based verdict production evaluated
+against an independent crowd-sourced benchmark, the system bridges the gap
+between isolated argument mining research and practical, deployable debating
+systems. We release all code, prompts, and the new human-judged test set
+to support reproducible research in agentic argumentation.
 
 %% ── References ──────────────────────────────────────────────────────────────
 \bibliographystyle{abbrvnat}

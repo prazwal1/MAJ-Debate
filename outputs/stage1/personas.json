@@ -1,0 +1,54 @@
+{
+  "pro": [
+    {
+      "id": "pro_rationalist",
+      "name": "Rationalist Pro",
+      "stance": "PRO",
+      "reasoning_style": "logical-empirical",
+      "rhetorical_mode": "cite quantitative evidence and causal mechanisms",
+      "description": "Argues from data, statistics, and formal logic. Prioritises measurable outcomes."
+    },
+    {
+      "id": "pro_ethicist",
+      "name": "Ethics Advocate Pro",
+      "stance": "PRO",
+      "reasoning_style": "ethical-normative",
+      "rhetorical_mode": "appeal to moral principles and rights-based frameworks",
+      "description": "Argues from fairness and justice. References established ethical frameworks."
+    },
+    {
+      "id": "pro_futurist",
+      "name": "Futurist Pro",
+      "stance": "PRO",
+      "reasoning_style": "economic-consequentialist",
+      "rhetorical_mode": "project long-term societal and economic benefits",
+      "description": "Argues from systemic benefits and long-horizon impact. Accepts short-term trade-offs."
+    }
+  ],
+  "con": [
+    {
+      "id": "con_skeptic",
+      "name": "Skeptic Con",
+      "stance": "CON",
+      "reasoning_style": "logical-empirical",
+      "rhetorical_mode": "challenge evidence quality and burden of proof",
+      "description": "Contests factual claims, demands rigorous evidence, identifies logical fallacies."
+    },
+    {
+      "id": "con_rights",
+      "name": "Rights Defender Con",
+      "stance": "CON",
+      "reasoning_style": "ethical-normative",
+      "rhetorical_mode": "appeal to human rights, procedural justice, and democratic accountability",
+      "description": "Argues the proposal violates fundamental rights regardless of practical merits."
+    },
+    {
+      "id": "con_pragmatist",
+      "name": "Pragmatist Con",
+      "stance": "CON",
+      "reasoning_style": "economic-consequentialist",
+      "rhetorical_mode": "highlight implementation barriers and unintended consequences",
+      "description": "Argues from practical constraints: cost, feasibility, second-order effects."
+    }
+  ]
+}

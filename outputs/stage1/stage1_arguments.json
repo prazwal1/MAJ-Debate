@@ -1,0 +1,2949 @@
+{
+  "stage": 1,
+  "run_name": "stage1-20260321_125131",
+  "timestamp": "20260321_125131",
+  "config": {
+    "model": "llama-3.3-70b-versatile",
+    "n_pro": 3,
+    "n_con": 3,
+    "r1_per_agent": 3,
+    "r2_per_agent": 2,
+    "mode": "live"
+  },
+  "personas": {
+    "pro": [
+      {
+        "id": "pro_rationalist",
+        "name": "Rationalist Pro",
+        "stance": "PRO",
+        "reasoning_style": "logical-empirical",
+        "rhetorical_mode": "cite quantitative evidence and causal mechanisms",
+        "description": "Argues from data, statistics, and formal logic. Prioritises measurable outcomes."
+      },
+      {
+        "id": "pro_ethicist",
+        "name": "Ethics Advocate Pro",
+        "stance": "PRO",
+        "reasoning_style": "ethical-normative",
+        "rhetorical_mode": "appeal to moral principles and rights-based frameworks",
+        "description": "Argues from fairness and justice. References established ethical frameworks."
+      },
+      {
+        "id": "pro_futurist",
+        "name": "Futurist Pro",
+        "stance": "PRO",
+        "reasoning_style": "economic-consequentialist",
+        "rhetorical_mode": "project long-term societal and economic benefits",
+        "description": "Argues from systemic benefits and long-horizon impact. Accepts short-term trade-offs."
+      }
+    ],
+    "con": [
+      {
+        "id": "con_skeptic",
+        "name": "Skeptic Con",
+        "stance": "CON",
+        "reasoning_style": "logical-empirical",
+        "rhetorical_mode": "challenge evidence quality and burden of proof",
+        "description": "Contests factual claims, demands rigorous evidence, identifies logical fallacies."
+      },
+      {
+        "id": "con_rights",
+        "name": "Rights Defender Con",
+        "stance": "CON",
+        "reasoning_style": "ethical-normative",
+        "rhetorical_mode": "appeal to human rights, procedural justice, and democratic accountability",
+        "description": "Argues the proposal violates fundamental rights regardless of practical merits."
+      },
+      {
+        "id": "con_pragmatist",
+        "name": "Pragmatist Con",
+        "stance": "CON",
+        "reasoning_style": "economic-consequentialist",
+        "rhetorical_mode": "highlight implementation barriers and unintended consequences",
+        "description": "Argues from practical constraints: cost, feasibility, second-order effects."
+      }
+    ]
+  },
+  "topics": [
+    {
+      "topic_id": "T01",
+      "topic_text": "AI should replace human judges in courtrooms",
+      "domain": "policy",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T01_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "AI judges reduce sentencing disparities by 25% via algorithmic consistency."
+        },
+        {
+          "arg_id": "T01_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Machine learning predicts case outcomes with 87% accuracy, outperforming humans."
+        },
+        {
+          "arg_id": "T01_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Automated judges process 300% more cases per hour than human counterparts."
+        },
+        {
+          "arg_id": "T01_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "AI judges uphold fairness by eliminating biases"
+        },
+        {
+          "arg_id": "T01_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Machines ensure equal justice under the law"
+        },
+        {
+          "arg_id": "T01_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Replacing humans with AI judges respects the right to impartial trials"
+        },
+        {
+          "arg_id": "T01_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "AI judges reduce long-term litigation costs through increased efficiency"
+        },
+        {
+          "arg_id": "T01_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Replacing human judges with AI enhances societal fairness by minimizing bias"
+        },
+        {
+          "arg_id": "T01_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "AI-driven courts unlock economic growth by accelerating dispute resolution"
+        },
+        {
+          "arg_id": "T01_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of empirical evidence supports AI's ability to replace human judges."
+        },
+        {
+          "arg_id": "T01_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "AI systems are prone to biases, undermining their objectivity in courtrooms."
+        },
+        {
+          "arg_id": "T01_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "No rigorous study proves AI can replicate human judges' nuanced decision-making processes."
+        },
+        {
+          "arg_id": "T01_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Replacing human judges with AI violates the right to a fair trial by a human jury"
+        },
+        {
+          "arg_id": "T01_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "AI judges undermine democratic accountability in the judiciary"
+        },
+        {
+          "arg_id": "T01_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Automated judgments deny defendants their right to appeal to human compassion"
+        },
+        {
+          "arg_id": "T01_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Replacing human judges with AI is cost-prohibitive due to development expenses."
+        },
+        {
+          "arg_id": "T01_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "AI judges lack feasibility in complex cases with nuanced moral implications."
+        },
+        {
+          "arg_id": "T01_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing AI judges would have unintended consequences on public trust in the judiciary system."
+        },
+        {
+          "arg_id": "T01_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Studies like 'AI in Law' by Harvard University show empirical evidence supporting AI's ability to replace human judges."
+        },
+        {
+          "arg_id": "T01_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Research by MIT found AI can replicate 95% of human judges' decision-making processes using machine learning algorithms."
+        },
+        {
+          "arg_id": "T01_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "The right to a fair trial is upheld by AI judges, ensuring impartiality and consistency."
+        },
+        {
+          "arg_id": "T01_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 6,
+          "text": "Human compassion is not a right, but a privilege, and AI judges prioritize justice over emotional appeals."
+        },
+        {
+          "arg_id": "T01_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Emerging AI technologies will provide empirical evidence to support their role in courtrooms."
+        },
+        {
+          "arg_id": "T01_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 7,
+          "text": "Long-term cost savings from AI judges will outweigh initial development expenses."
+        },
+        {
+          "arg_id": "T01_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "The claim of 25% reduction in sentencing disparities lacks empirical evidence to support its validity."
+        },
+        {
+          "arg_id": "T01_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "The assertion that AI judges process 300% more cases per hour is unsubstantiated and ignores potential errors."
+        },
+        {
+          "arg_id": "T01_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "AI judges cannot uphold fairness as they lack human empathy and moral reasoning."
+        },
+        {
+          "arg_id": "T01_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 6,
+          "text": "Replacing human judges with AI undermines the right to a fair trial by a human jury."
+        },
+        {
+          "arg_id": "T01_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Implementing AI judges may increase upfront costs, offsetting reduced sentencing disparities."
+        },
+        {
+          "arg_id": "T01_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Processing more cases per hour may lead to rushed verdicts, undermining justice quality."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T02",
+      "topic_text": "Universal basic income should be implemented globally",
+      "domain": "policy",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T02_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "UBI reduces poverty by 45% globally, as evidenced by Finland's 2017 experiment."
+        },
+        {
+          "arg_id": "T02_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing UBI increases entrepreneurship by 25%, according to a 2019 Stanford University study."
+        },
+        {
+          "arg_id": "T02_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "A global UBI would decrease wealth inequality by 30%, as modeled by the 2020 World Bank simulation."
+        },
+        {
+          "arg_id": "T02_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Universal basic income upholds human dignity as a fundamental right."
+        },
+        {
+          "arg_id": "T02_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing UBI globally ensures fairness and equality of opportunity."
+        },
+        {
+          "arg_id": "T02_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "A global UBI respects the moral principle of distributive justice."
+        },
+        {
+          "arg_id": "T02_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Universal basic income boosts economic stability through guaranteed consumption."
+        },
+        {
+          "arg_id": "T02_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Global UBI fosters long-term innovation by reducing poverty-related barriers."
+        },
+        {
+          "arg_id": "T02_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing UBI worldwide stimulates systemic growth by mitigating wealth disparities."
+        },
+        {
+          "arg_id": "T02_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of empirical evidence supports UBI's efficacy globally."
+        },
+        {
+          "arg_id": "T02_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing UBI globally would require unproven, massive funding mechanisms."
+        },
+        {
+          "arg_id": "T02_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "No rigorous study demonstrates UBI's long-term sustainability worldwide."
+        },
+        {
+          "arg_id": "T02_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing UBI globally infringes upon individual autonomy and freedom."
+        },
+        {
+          "arg_id": "T02_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "The policy undermines procedural justice by redistributing wealth without consent."
+        },
+        {
+          "arg_id": "T02_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "UBI implementation disregards democratic accountability by bypassing elected representatives."
+        },
+        {
+          "arg_id": "T02_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing universal basic income globally is cost-prohibitive."
+        },
+        {
+          "arg_id": "T02_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Feasibility issues arise from varying national economic conditions."
+        },
+        {
+          "arg_id": "T02_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Unintended consequences include reduced workforce participation and increased tax burdens."
+        },
+        {
+          "arg_id": "T02_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Pilot studies in Alaska and Finland show significant reductions in poverty and inequality, supporting UBI's global efficacy."
+        },
+        {
+          "arg_id": "T02_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "A 30-year study in Canada demonstrated long-term sustainability of UBI, with decreased healthcare costs and increased economic mobility."
+        },
+        {
+          "arg_id": "T02_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "Implementing UBI globally actually upholds human dignity and freedom by ensuring basic needs are met."
+        },
+        {
+          "arg_id": "T02_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 5,
+          "text": "UBI promotes distributive justice by recognizing every individual's inherent right to a minimum standard of living."
+        },
+        {
+          "arg_id": "T02_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Pilot studies demonstrate UBI's potential to stimulate local economies, justifying global implementation."
+        },
+        {
+          "arg_id": "T02_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Long-term sustainability will be ensured through efficient allocation of existing social welfare funds."
+        },
+        {
+          "arg_id": "T02_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Finland's 2017 UBI experiment was limited and inconclusive, lacking generalizability to global implementation."
+        },
+        {
+          "arg_id": "T02_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "The 2020 World Bank simulation's 30% reduction in wealth inequality is unsubstantiated by empirical evidence."
+        },
+        {
+          "arg_id": "T02_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Finland's UBI experiment was inconclusive due to its short duration and limited scope, violating procedural justice standards."
+        },
+        {
+          "arg_id": "T02_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "The World Bank simulation lacks democratic accountability, as its models may not reflect the diverse economic needs of all nations."
+        },
+        {
+          "arg_id": "T02_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Finland's UBI experiment was costly and had limited duration, making its results inapplicable globally."
+        },
+        {
+          "arg_id": "T02_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "The World Bank simulation assumes unrealistic funding mechanisms, overlooking implementation barriers and fiscal constraints."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T03",
+      "topic_text": "Social media platforms should be regulated as public utilities",
+      "domain": "policy",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T03_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Regulation ensures 95% of users' data is protected, as evidenced by GDPR compliance."
+        },
+        {
+          "arg_id": "T03_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Public utility status reduces misinformation by 30% via fact-checking mechanisms."
+        },
+        {
+          "arg_id": "T03_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Utility regulation increases platform transparency by 25%, as shown by SEC filing requirements."
+        },
+        {
+          "arg_id": "T03_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Regulation ensures equal access to information, a fundamental human right."
+        },
+        {
+          "arg_id": "T03_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Unregulated social media platforms infringe upon users' right to privacy and security."
+        },
+        {
+          "arg_id": "T03_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Treating social media as public utilities promotes fairness and accountability in online discourse."
+        },
+        {
+          "arg_id": "T03_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Regulation ensures equitable access, fostering long-term economic growth."
+        },
+        {
+          "arg_id": "T03_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Public utility status mitigates systemic risks, protecting consumers and markets."
+        },
+        {
+          "arg_id": "T03_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Utility regulation promotes investment in digital infrastructure, driving future innovation."
+        },
+        {
+          "arg_id": "T03_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of empirical evidence supports social media as public utilities."
+        },
+        {
+          "arg_id": "T03_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Regulation would require rigorous proof of market failure."
+        },
+        {
+          "arg_id": "T03_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "No logical basis exists for likening social media to traditional utilities."
+        },
+        {
+          "arg_id": "T03_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Regulating social media as utilities infringes on freedom of expression."
+        },
+        {
+          "arg_id": "T03_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Procedural justice demands due process, not blanket regulation."
+        },
+        {
+          "arg_id": "T03_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Democratic accountability is undermined by unelected regulators controlling online discourse."
+        },
+        {
+          "arg_id": "T03_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Regulation would impose significant compliance costs on social media platforms."
+        },
+        {
+          "arg_id": "T03_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing utility-style regulation would stifle innovation in the tech sector."
+        },
+        {
+          "arg_id": "T03_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Overregulation could lead to unintended consequences, such as increased censorship."
+        },
+        {
+          "arg_id": "T03_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Empirical evidence shows 70% of adults use social media, indicating a public utility-like dependence."
+        },
+        {
+          "arg_id": "T03_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Logical basis exists in social media's essential role in modern communication, akin to traditional utilities like water and electricity."
+        },
+        {
+          "arg_id": "T03_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Moral obligation to protect users outweighs lack of empirical evidence."
+        },
+        {
+          "arg_id": "T03_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "Freedom of expression is balanced by the right to safety from online harm."
+        },
+        {
+          "arg_id": "T03_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Economic benefits from regulation outweigh lack of empirical evidence."
+        },
+        {
+          "arg_id": "T03_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Social media's societal impact justifies utility-like regulation for long-term economic gains."
+        },
+        {
+          "arg_id": "T03_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "GDPR compliance does not equate to 95% data protection, as loopholes and exemptions often undermine its effectiveness."
+        },
+        {
+          "arg_id": "T03_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "SEC filing requirements do not necessarily translate to 25% increased transparency, as filings can be incomplete or misleading."
+        },
+        {
+          "arg_id": "T03_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Regulation may compromise users' right to anonymity, a fundamental human right, in the name of data protection."
+        },
+        {
+          "arg_id": "T03_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Forced transparency via SEC filings may undermine platforms' ability to innovate and adapt, violating principles of procedural justice."
+        },
+        {
+          "arg_id": "T03_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "GDPR compliance has significant implementation costs, negating potential benefits."
+        },
+        {
+          "arg_id": "T03_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "SEC filing requirements would overly burden small platforms, stifling innovation."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T04",
+      "topic_text": "Gene editing in human embryos should be permitted for disease prevention",
+      "domain": "ethics",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T04_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Gene editing prevents 70% of genetic diseases, as evidenced by CRISPR trials."
+        },
+        {
+          "arg_id": "T04_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Data shows 90% of embryonic editing is precise, minimizing off-target effects."
+        },
+        {
+          "arg_id": "T04_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Statistical models predict a 40% reduction in inherited disorders via embryo editing."
+        },
+        {
+          "arg_id": "T04_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Gene editing promotes fairness by preventing genetic diseases"
+        },
+        {
+          "arg_id": "T04_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Human rights demand access to life-saving embryo editing"
+        },
+        {
+          "arg_id": "T04_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Justice requires allowing parents to safeguard their children's health"
+        },
+        {
+          "arg_id": "T04_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Gene editing prevents inherited diseases, reducing long-term healthcare costs."
+        },
+        {
+          "arg_id": "T04_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Permitting embryo editing boosts biotech investments, driving economic growth."
+        },
+        {
+          "arg_id": "T04_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Disease prevention through editing enhances societal productivity, improving future generations' quality of life."
+        },
+        {
+          "arg_id": "T04_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of long-term safety data undermines gene editing's preventive benefits."
+        },
+        {
+          "arg_id": "T04_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Insufficient evidence supports the efficacy of embryonic gene editing."
+        },
+        {
+          "arg_id": "T04_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Current regulations fail to address unintended off-target effects."
+        },
+        {
+          "arg_id": "T04_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Gene editing violates human rights to autonomy and dignity."
+        },
+        {
+          "arg_id": "T04_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Procedural justice demands strict regulations on embryo editing."
+        },
+        {
+          "arg_id": "T04_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Democratic accountability requires public consensus before permitting such interventions."
+        },
+        {
+          "arg_id": "T04_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Gene editing's high cost limits accessibility, exacerbating healthcare disparities."
+        },
+        {
+          "arg_id": "T04_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Inadequate regulation increases risk of unintended genetic consequences."
+        },
+        {
+          "arg_id": "T04_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Widespread adoption may divert resources from proven disease prevention methods."
+        },
+        {
+          "arg_id": "T04_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Clinical trials show 95% safety rate for gene editing, mitigating long-term risks."
+        },
+        {
+          "arg_id": "T04_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "CRISPR-Cas9 editing has 90% on-target efficiency, minimizing off-target effects."
+        },
+        {
+          "arg_id": "T04_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "Gene editing upholds human rights to life and health by preventing inherited diseases."
+        },
+        {
+          "arg_id": "T04_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 7,
+          "text": "Equal access to gene editing is a moral imperative to prevent disparities in healthcare."
+        },
+        {
+          "arg_id": "T04_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Long-term safety data will be generated as gene editing advances, ultimately saving billions in disease treatment costs."
+        },
+        {
+          "arg_id": "T04_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Regulations can be refined to mitigate off-target effects, unlocking vast economic benefits from disease prevention."
+        },
+        {
+          "arg_id": "T04_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "CRISPR trials' sample sizes are too small to conclusively prove 70% disease prevention."
+        },
+        {
+          "arg_id": "T04_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Statistical models predicting 40% reduction in disorders lack empirical validation and robust data."
+        },
+        {
+          "arg_id": "T04_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 5,
+          "text": "Human rights are compromised by embryo editing, as it raises concerns about informed consent for unborn individuals."
+        },
+        {
+          "arg_id": "T04_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 6,
+          "text": "Justice demands rigorous regulation, not unfettered access, to safeguard against unequal access to gene editing technologies."
+        },
+        {
+          "arg_id": "T04_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Trials' limited scope and sample size undermine the reliability of CRISPR's 70% disease prevention claim."
+        },
+        {
+          "arg_id": "T04_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 7,
+          "text": "Reduced healthcare costs from gene editing are offset by increased costs of editing procedures and potential long-term side effects."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T05",
+      "topic_text": "Autonomous weapons should be banned under international law",
+      "domain": "ethics",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T05_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Autonomous weapons increase civilian casualties by 35% due to targeting errors."
+        },
+        {
+          "arg_id": "T05_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "90% of nations lack adequate cybersecurity to prevent autonomous weapon hijacking."
+        },
+        {
+          "arg_id": "T05_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Deploying autonomous weapons raises the risk of arms races by 47% annually."
+        },
+        {
+          "arg_id": "T05_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Autonomous weapons violate human rights by depriving individuals of life without due process."
+        },
+        {
+          "arg_id": "T05_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Banning autonomous weapons upholds the moral principle of distinction in warfare."
+        },
+        {
+          "arg_id": "T05_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "International law must prohibit autonomous weapons to prevent unjust harm to non-combatants."
+        },
+        {
+          "arg_id": "T05_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Autonomous weapons spark arms races, straining economies."
+        },
+        {
+          "arg_id": "T05_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Banning autonomous weapons prevents destabilizing global conflicts."
+        },
+        {
+          "arg_id": "T05_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Prohibiting autonomous arms fuels long-term diplomatic cooperation."
+        },
+        {
+          "arg_id": "T05_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of empirical evidence proves autonomous weapons' harm."
+        },
+        {
+          "arg_id": "T05_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "No logical basis exists for assuming bans prevent misuse."
+        },
+        {
+          "arg_id": "T05_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Insufficient data supports the effectiveness of international bans."
+        },
+        {
+          "arg_id": "T05_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Autonomous weapons violate human rights by depriving individuals of due process."
+        },
+        {
+          "arg_id": "T05_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "International law must prioritize democratic accountability over autonomous warfare."
+        },
+        {
+          "arg_id": "T05_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Prohibiting autonomous weapons upholds the fundamental right to life and dignity."
+        },
+        {
+          "arg_id": "T05_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Banning autonomous weapons is infeasible due to high development costs."
+        },
+        {
+          "arg_id": "T05_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Autonomous weapons bans would have unintended consequences, like destabilizing power balances."
+        },
+        {
+          "arg_id": "T05_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing bans would be impractical due to verification and enforcement challenges."
+        },
+        {
+          "arg_id": "T05_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Empirical evidence from drone strikes shows autonomous weapons' harm, disproving the lack of evidence claim."
+        },
+        {
+          "arg_id": "T05_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Data on landmine bans demonstrates the effectiveness of international bans in reducing casualties."
+        },
+        {
+          "arg_id": "T05_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Lack of evidence does not justify risking human rights violations."
+        },
+        {
+          "arg_id": "T05_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Moral obligations to protect human life outweigh concerns about ban effectiveness."
+        },
+        {
+          "arg_id": "T05_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Lack of evidence now doesn't preclude future harm, so proactive bans can prevent economic losses."
+        },
+        {
+          "arg_id": "T05_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Effective bans can yield long-term economic benefits by preventing autonomous weapon proliferation."
+        },
+        {
+          "arg_id": "T05_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "The 35% increase in civilian casualties lacks empirical evidence to support its validity."
+        },
+        {
+          "arg_id": "T05_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "The 47% annual risk of arms races is unsubstantiated and lacks concrete data to prove causation."
+        },
+        {
+          "arg_id": "T05_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Banning autonomous weapons ignores the potential for technological advancements to reduce targeting errors and increase precision."
+        },
+        {
+          "arg_id": "T05_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "The notion that autonomous weapons violate human rights is unsubstantiated, as due process is a judicial concept inapplicable to warfare."
+        },
+        {
+          "arg_id": "T05_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Implementing a ban on autonomous weapons would be costly and ineffective in reducing civilian casualties."
+        },
+        {
+          "arg_id": "T05_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Banning autonomous weapons may accelerate arms races as nations seek alternative, potentially more destructive technologies."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T06",
+      "topic_text": "Companies have a moral obligation to prioritise employee wellbeing over profit",
+      "domain": "ethics",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T06_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Companies prioritizing wellbeing see 25% higher productivity"
+        },
+        {
+          "arg_id": "T06_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Investing in employee health yields 300% ROI"
+        },
+        {
+          "arg_id": "T06_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Wellbeing-focused firms experience 50% lower staff turnover rates"
+        },
+        {
+          "arg_id": "T06_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Companies must prioritize employee wellbeing as a basic human right"
+        },
+        {
+          "arg_id": "T06_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Profit should not supersede moral obligations to workers' health"
+        },
+        {
+          "arg_id": "T06_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Ethical business models demand fairness and justice for all employees"
+        },
+        {
+          "arg_id": "T06_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Prioritizing employee wellbeing boosts long-term productivity and reduces turnover costs."
+        },
+        {
+          "arg_id": "T06_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Investing in employee wellbeing enhances company reputation, attracting top talent and driving growth."
+        },
+        {
+          "arg_id": "T06_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Employee wellbeing correlates with increased innovation, leading to sustained economic competitiveness."
+        },
+        {
+          "arg_id": "T06_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of empirical evidence supports a moral obligation to prioritise wellbeing over profit"
+        },
+        {
+          "arg_id": "T06_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Companies' primary legal obligation is to shareholders, not employees"
+        },
+        {
+          "arg_id": "T06_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "No logical basis exists to universally prioritize wellbeing over profit"
+        },
+        {
+          "arg_id": "T06_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Prioritizing wellbeing over profit infringes on companies' right to freedom of enterprise."
+        },
+        {
+          "arg_id": "T06_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Mandating wellbeing over profit undermines procedural justice in corporate decision-making."
+        },
+        {
+          "arg_id": "T06_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Forcing companies to prioritize wellbeing violates their democratic right to set business objectives."
+        },
+        {
+          "arg_id": "T06_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Prioritizing wellbeing over profit is infeasible due to financial constraints."
+        },
+        {
+          "arg_id": "T06_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing wellbeing initiatives can have unintended consequences on productivity."
+        },
+        {
+          "arg_id": "T06_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Excessive wellbeing expenditures can lead to increased costs for consumers."
+        },
+        {
+          "arg_id": "T06_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Numerous studies demonstrate a positive correlation between employee wellbeing and productivity, contradicting the claim of lack of empirical evidence."
+        },
+        {
+          "arg_id": "T06_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "A logical basis for prioritizing wellbeing exists, as it causally contributes to long-term profitability and business sustainability."
+        },
+        {
+          "arg_id": "T06_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Moral obligations aren't solely based on empirical evidence, but on fundamental human rights and dignity."
+        },
+        {
+          "arg_id": "T06_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "A logical basis exists in the inherent moral value of prioritizing human wellbeing over profit."
+        },
+        {
+          "arg_id": "T06_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Long-term studies show prioritizing wellbeing boosts productivity, contradicting the lack of empirical evidence claim."
+        },
+        {
+          "arg_id": "T06_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "A logical basis exists in the long-term economic benefits of a healthy, productive workforce."
+        },
+        {
+          "arg_id": "T06_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Correlation between wellbeing and productivity does not imply causation."
+        },
+        {
+          "arg_id": "T06_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Staff turnover rates can be influenced by factors beyond wellbeing."
+        },
+        {
+          "arg_id": "T06_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "Mandating wellbeing as a basic human right violates companies' right to freedom of operation under democratic principles."
+        },
+        {
+          "arg_id": "T06_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 6,
+          "text": "Imposing ethical business models can undermine procedural justice by disregarding varying company capacities and contexts."
+        },
+        {
+          "arg_id": "T06_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Prioritizing wellbeing over profit may not yield 25% higher productivity due to increased costs and implementation barriers."
+        },
+        {
+          "arg_id": "T06_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Lower staff turnover rates from wellbeing-focused firms may be offset by higher recruitment costs and training expenses for replacement employees."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T07",
+      "topic_text": "Nuclear energy is the best solution to climate change",
+      "domain": "science",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T07_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear energy reduces CO2 emissions by 64% compared to coal, according to EPA data."
+        },
+        {
+          "arg_id": "T07_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Each nuclear reactor prevents 3.1 million tons of CO2 emissions annually, as calculated by the IEA."
+        },
+        {
+          "arg_id": "T07_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear power generates 366 grams of CO2 per kilowatt-hour, outperforming solar and wind, as shown by NREL studies."
+        },
+        {
+          "arg_id": "T07_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear energy promotes fairness by providing equal access to clean power for all."
+        },
+        {
+          "arg_id": "T07_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "It upholds the human right to a safe environment by reducing greenhouse gas emissions."
+        },
+        {
+          "arg_id": "T07_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear energy aligns with the moral principle of intergenerational justice by preserving a habitable planet."
+        },
+        {
+          "arg_id": "T07_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear energy reduces greenhouse gas emissions, boosting long-term economic growth."
+        },
+        {
+          "arg_id": "T07_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Investing in nuclear power creates high-paying jobs, stimulating local economies."
+        },
+        {
+          "arg_id": "T07_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear energy's low operational costs drive down electricity prices, increasing global competitiveness."
+        },
+        {
+          "arg_id": "T07_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of empirical evidence supports nuclear as the best climate solution."
+        },
+        {
+          "arg_id": "T07_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "The burden of proof for nuclear safety remains unmet."
+        },
+        {
+          "arg_id": "T07_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Insufficient data exists to refute renewable energy as a superior alternative."
+        },
+        {
+          "arg_id": "T07_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear energy infringes on the right to a safe environment"
+        },
+        {
+          "arg_id": "T07_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Forced reliance on nuclear energy undermines democratic energy choices"
+        },
+        {
+          "arg_id": "T07_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear waste disposal violates intergenerational justice and human rights"
+        },
+        {
+          "arg_id": "T07_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear energy's high upfront costs hinder widespread adoption."
+        },
+        {
+          "arg_id": "T07_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing nuclear energy globally would exacerbate existing uranium supply shortages."
+        },
+        {
+          "arg_id": "T07_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Nuclear waste disposal difficulties pose significant environmental and health risks."
+        },
+        {
+          "arg_id": "T07_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Studies show nuclear energy reduces CO2 emissions by 64%, outpacing other low-carbon sources."
+        },
+        {
+          "arg_id": "T07_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Data reveals nuclear energy's levelized cost is $30/MWh, competitive with renewables."
+        },
+        {
+          "arg_id": "T07_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "The right to a safe environment is actually upheld by nuclear energy's low greenhouse gas emissions."
+        },
+        {
+          "arg_id": "T07_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 6,
+          "text": "Nuclear waste disposal can be managed ethically to respect intergenerational justice and human rights."
+        },
+        {
+          "arg_id": "T07_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Long-term cost savings from nuclear energy outweigh lack of empirical evidence."
+        },
+        {
+          "arg_id": "T07_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 7,
+          "text": "High upfront costs are offset by nuclear energy's long-term economic benefits."
+        },
+        {
+          "arg_id": "T07_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "EPA data may be outdated, requiring revised calculations to accurately assess nuclear energy's CO2 reduction impact."
+        },
+        {
+          "arg_id": "T07_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "NREL studies overlooked nuclear energy's lifecycle emissions, including construction and waste disposal."
+        },
+        {
+          "arg_id": "T07_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 5,
+          "text": "Nuclear energy compromises the human right to safety due to radioactive waste disposal risks."
+        },
+        {
+          "arg_id": "T07_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 8,
+          "text": "Investing in nuclear power prioritizes profit over worker safety and environmental justice."
+        },
+        {
+          "arg_id": "T07_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "EPA data overlooks nuclear energy's high upfront costs and implementation barriers."
+        },
+        {
+          "arg_id": "T07_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "NREL studies neglect nuclear energy's significant waste management and decommissioning expenses."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T08",
+      "topic_text": "Space colonisation should be a global priority over solving Earth problems",
+      "domain": "science",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T08_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Colonising space ensures 100% survival of humanity, statistically,\" \"Space-based solar power can meet 50% of global energy demands,\" \"Every dollar invested in space tech yields 7:1 returns in innovation"
+        },
+        {
+          "arg_id": "T08_A001",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Colonising space ensures humanity's survival, a moral imperative to preserve our species."
+        },
+        {
+          "arg_id": "T08_A002",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Global cooperation on space colonisation promotes fairness and equality among nations."
+        },
+        {
+          "arg_id": "T08_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Prioritising space colonisation upholds the human right to explore and settle new frontiers."
+        },
+        {
+          "arg_id": "T08_A004",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Colonizing space ensures humanity's economic survival beyond Earth's resource limits."
+        },
+        {
+          "arg_id": "T08_A005",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Space colonization drives innovation, boosting long-term global economic growth."
+        },
+        {
+          "arg_id": "T08_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Investing in space colonization mitigates existential risks, safeguarding future societal prosperity."
+        },
+        {
+          "arg_id": "T08_A007",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of empirical evidence supports space colonisation as a viable solution."
+        },
+        {
+          "arg_id": "T08_A008",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "The burden of proof for space colonisation's feasibility remains unmet."
+        },
+        {
+          "arg_id": "T08_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Insufficient data exists to prioritise space colonisation over solving pressing Earth issues."
+        },
+        {
+          "arg_id": "T08_A010",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Prioritizing space colonization violates the human right to basic needs on Earth"
+        },
+        {
+          "arg_id": "T08_A011",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Global resources should address procedural injustices on our planet first"
+        },
+        {
+          "arg_id": "T08_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Democratically, citizens' voices demand solutions to earthly problems over space exploration"
+        },
+        {
+          "arg_id": "T08_A013",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Colonizing space is infeasible due to exorbitant costs"
+        },
+        {
+          "arg_id": "T08_A014",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Space colonization diverted resources from pressing Earth issues"
+        },
+        {
+          "arg_id": "T08_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Unintended consequences of space colonization may exacerbate global problems"
+        },
+        {
+          "arg_id": "T08_A016",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "NASA's Mars Curiosity rover provides empirical evidence supporting space colonization's viability."
+        },
+        {
+          "arg_id": "T08_A017",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Data from SpaceX's reusable rockets demonstrates sufficient progress to prioritize space colonization."
+        },
+        {
+          "arg_id": "T08_A018",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "Prioritizing space colonization does not violate human rights, but rather ensures their long-term survival and expansion."
+        },
+        {
+          "arg_id": "T08_A019",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 5,
+          "text": "Global resources can address Earth's injustices while also securing a moral imperative to colonize space for humanity's future."
+        },
+        {
+          "arg_id": "T08_A020",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 7,
+          "text": "Investing in space colonization can yield long-term economic benefits exceeding costs."
+        },
+        {
+          "arg_id": "T08_A021",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 8,
+          "text": "Space colonization can create new resources to solve pressing Earth issues."
+        },
+        {
+          "arg_id": "T08_A022",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "The 100% survival claim lacks empirical evidence and ignores potential space colonization risks."
+        },
+        {
+          "arg_id": "T08_A023",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Global cooperation on space colonization is unfounded, as historical examples show unequal distribution of benefits."
+        },
+        {
+          "arg_id": "T08_A024",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 2,
+          "text": "Prioritizing Earth problems upholds the human right to basic needs over speculative species preservation."
+        },
+        {
+          "arg_id": "T08_A025",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "The human right to explore is outweighed by the human right to basic necessities on Earth."
+        },
+        {
+          "arg_id": "T08_A026",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Investing in space tech yields limited returns if Earth's problems, like poverty and inequality, hinder its implementation."
+        },
+        {
+          "arg_id": "T08_A027",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Global cooperation on space colonisation may be hindered by unequal access to resources and technology among nations."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 28,
+        "r1_args": 16,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T09",
+      "topic_text": "Social media does more harm than good to democratic discourse",
+      "domain": "society",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T09_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Social media amplifies echo chambers, decreasing exposure to opposing views by 40%."
+        },
+        {
+          "arg_id": "T09_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Algorithmic feeds prioritize outrage, increasing polarizing content by 30% annually."
+        },
+        {
+          "arg_id": "T09_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Fake news on social media influences 25% of voters' decisions, undermining democratic discourse."
+        },
+        {
+          "arg_id": "T09_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Social media undermines democratic discourse by spreading misinformation, violating the right to informed decision-making."
+        },
+        {
+          "arg_id": "T09_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Algorithmic amplification of hate speech infringes upon users' right to dignity and respect."
+        },
+        {
+          "arg_id": "T09_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Unregulated social media platforms perpetuate unequal access to information, breaching the principle of equal participation."
+        },
+        {
+          "arg_id": "T09_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Social media fosters global economic growth through digital connectivity."
+        },
+        {
+          "arg_id": "T09_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Long-term, social media increases civic engagement and voter turnout."
+        },
+        {
+          "arg_id": "T09_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Systemic benefits from social media outweigh temporary discourse disruptions."
+        },
+        {
+          "arg_id": "T09_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of empirical evidence proves social media's net harm to democracy"
+        },
+        {
+          "arg_id": "T09_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Correlation between social media usage and democratic engagement is not causation"
+        },
+        {
+          "arg_id": "T09_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Unsubstantiated claims of harm shift the burden of proof unfairly"
+        },
+        {
+          "arg_id": "T09_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Restricting social media violates freedom of expression"
+        },
+        {
+          "arg_id": "T09_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Algorithms prioritizing outrage undermine procedural justice"
+        },
+        {
+          "arg_id": "T09_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Censoring online discourse erodes democratic accountability"
+        },
+        {
+          "arg_id": "T09_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Regulating social media is infeasible due to high enforcement costs."
+        },
+        {
+          "arg_id": "T09_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Banning social media would have unintended consequences on economic growth."
+        },
+        {
+          "arg_id": "T09_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing fact-checking algorithms is impractical due to technological limitations."
+        },
+        {
+          "arg_id": "T09_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Empirical studies show 70% of social media users report increased polarization, contradicting the lack of evidence claim."
+        },
+        {
+          "arg_id": "T09_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Quantitative analysis of hate speech incidents causally linked to social media usage substantiates harm claims, shifting the burden of proof."
+        },
+        {
+          "arg_id": "T09_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "The absence of empirical evidence does not justify ignoring moral obligations to protect democracy."
+        },
+        {
+          "arg_id": "T09_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "Freedom of expression does not entitle individuals to spread harmful misinformation."
+        },
+        {
+          "arg_id": "T09_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Lack of evidence does not justify inaction, as potential long-term economic costs of social media harm can be catastrophic."
+        },
+        {
+          "arg_id": "T09_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 8,
+          "text": "Short-term economic gains from social media are outweighed by potential long-term societal and economic benefits of a healthier democratic discourse."
+        },
+        {
+          "arg_id": "T09_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "The 40% decrease in exposure to opposing views is unsubstantiated and lacks empirical evidence."
+        },
+        {
+          "arg_id": "T09_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "There is no credible proof that fake news on social media directly influences 25% of voters' decisions."
+        },
+        {
+          "arg_id": "T09_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Restricting social media amplification infringes upon the right to free expression and information."
+        },
+        {
+          "arg_id": "T09_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Undermining social media ignores the democratic right to access diverse, unfiltered information and perspectives."
+        },
+        {
+          "arg_id": "T09_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Implementing echo chamber reduction measures would require costly algorithm overhauls."
+        },
+        {
+          "arg_id": "T09_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Fact-checking interventions may inadvertently censor minority views, undermining democratic discourse."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    },
+    {
+      "topic_id": "T10",
+      "topic_text": "Remote work should become the default for knowledge workers",
+      "domain": "society",
+      "run_name": "stage1-20260321_125131",
+      "arguments": [
+        {
+          "arg_id": "T10_A000",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Remote work increases productivity by 23% on average, according to Stanford studies."
+        },
+        {
+          "arg_id": "T10_A001",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "74% of knowledge workers report better work-life balance with remote work, cites Gallup polls."
+        },
+        {
+          "arg_id": "T10_A002",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Remote work reduces turnover rates by 50%, as shown by Harvard Business Review data."
+        },
+        {
+          "arg_id": "T10_A003",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Remote work promotes fairness by accommodating diverse needs"
+        },
+        {
+          "arg_id": "T10_A004",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Knowledge workers have a right to flexible work arrangements"
+        },
+        {
+          "arg_id": "T10_A005",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Defaulting to remote work upholds the moral principle of work-life balance"
+        },
+        {
+          "arg_id": "T10_A006",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Remote work boosts productivity and reduces turnover, increasing economic output."
+        },
+        {
+          "arg_id": "T10_A007",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "It fosters a diverse talent pool by transcending geographical boundaries."
+        },
+        {
+          "arg_id": "T10_A008",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Long-term, remote work reduces urban congestion and pollution, enhancing overall quality of life."
+        },
+        {
+          "arg_id": "T10_A009",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Lack of rigorous evidence supports remote work productivity claims."
+        },
+        {
+          "arg_id": "T10_A010",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Insufficient data exists on remote work's long-term effects."
+        },
+        {
+          "arg_id": "T10_A011",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Correlation between remote work and employee isolation is understudied."
+        },
+        {
+          "arg_id": "T10_A012",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Forcing remote work infringes on autonomy rights"
+        },
+        {
+          "arg_id": "T10_A013",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Remote work defaults undermine procedural justice in employment"
+        },
+        {
+          "arg_id": "T10_A014",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Mandatory remote work breaches democratic accountability in workplace policy"
+        },
+        {
+          "arg_id": "T10_A015",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Remote work increases cybersecurity risks due to unsecured home networks."
+        },
+        {
+          "arg_id": "T10_A016",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Implementing remote work defaults is costly for small businesses with limited IT infrastructure."
+        },
+        {
+          "arg_id": "T10_A017",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 1,
+          "targets_arg": null,
+          "text": "Forced remote work can exacerbate social isolation and decrease employee mental health."
+        },
+        {
+          "arg_id": "T10_A018",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Studies show 4.8% increase in productivity with remote work, contradicting claims of lacking evidence."
+        },
+        {
+          "arg_id": "T10_A019",
+          "persona_id": "pro_rationalist",
+          "persona": "Rationalist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Data reveals 75% of remote workers report similar or increased social connections, debunking correlation concerns."
+        },
+        {
+          "arg_id": "T10_A020",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 4,
+          "text": "Forcing office work infringes on employees' right to work-life balance and autonomy."
+        },
+        {
+          "arg_id": "T10_A021",
+          "persona_id": "pro_ethicist",
+          "persona": "Ethics Advocate Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 9,
+          "text": "Employers have a moral obligation to prioritize employees' mental health through flexible work arrangements."
+        },
+        {
+          "arg_id": "T10_A022",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Studies show remote work boosts productivity, driving long-term economic growth."
+        },
+        {
+          "arg_id": "T10_A023",
+          "persona_id": "pro_futurist",
+          "persona": "Futurist Pro",
+          "stance": "PRO",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Remote work enables flexible social connections, fostering diverse, global networks and communities."
+        },
+        {
+          "arg_id": "T10_A024",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "The Stanford study's 23% productivity increase lacks control groups, undermining its reliability."
+        },
+        {
+          "arg_id": "T10_A025",
+          "persona_id": "con_skeptic",
+          "persona": "Skeptic Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Harvard Business Review's 50% turnover reduction claim is based on limited, non-representative samples."
+        },
+        {
+          "arg_id": "T10_A026",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Productivity gains from remote work may compromise worker's right to a healthy separation of work and personal life."
+        },
+        {
+          "arg_id": "T10_A027",
+          "persona_id": "con_rights",
+          "persona": "Rights Defender Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 5,
+          "text": "Granting knowledge workers a right to flexible work arrangements may unfairly burden other workers with inflexible schedules."
+        },
+        {
+          "arg_id": "T10_A028",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 1,
+          "text": "Increased productivity may not offset higher technology and infrastructure costs."
+        },
+        {
+          "arg_id": "T10_A029",
+          "persona_id": "con_pragmatist",
+          "persona": "Pragmatist Con",
+          "stance": "CON",
+          "round": 2,
+          "targets_arg": 3,
+          "text": "Reduced turnover rates may be offset by increased difficulty in building strong company culture."
+        }
+      ],
+      "meta": {
+        "n_pro": 3,
+        "n_con": 3,
+        "r1_per_agent": 3,
+        "r2_per_agent": 2,
+        "total_args": 30,
+        "r1_args": 18,
+        "r2_args": 12,
+        "model": "llama-3.3-70b-versatile",
+        "mode": "live"
+      }
+    }
+  ],
+  "summary": {
+    "total_topics": 10,
+    "total_r1_args": 178,
+    "total_r2_args": 120,
+    "total_args": 298,
+    "avg_args_per_topic": 29.8,
+    "r2_coverage_pct": 40.3
+  }
+}

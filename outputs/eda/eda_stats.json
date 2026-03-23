@@ -86,5 +86,16 @@
       "acc_hi": 95,
       "pers": 4.8
     }
-  ]
+  ],
+  "ddo_total_debates": 78376,
+  "ddo_n_topics": 23,
+  "ddo_sample_size": 500,
+  "ddo_mode": "simulated",
+  "ddo_pro_win_pct": 52.0,
+  "ddo_con_win_pct": 41.2,
+  "ddo_tie_pct": 6.9,
+  "ddo_modal_rounds": 3,
+  "ddo_sample_pro_pct": 60.8,
+  "ddo_sample_con_pct": 39.2,
+  "ddo_complete_debates": 60492
 }
