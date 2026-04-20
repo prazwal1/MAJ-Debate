@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "configuration": "Single-LLM Baseline",
+      "ddo_stage2_path": "outputs/stage2/ddo_sample_single_llm/stage2_relations.json",
+      "ddo_stage3_path": "outputs/stage3/ddo_sample_single_llm/stage3_graphs.json",
+      "ddo_stage4_path": "outputs/stage4/ddo_sample_single_llm/stage4_judgments.json",
+      "human_stage4_path": "outputs/stage4/human_eval_single_llm/stage4_judgments.json",
+      "human_eval_results_path": "outputs/human_eval/human_eval_results.json"
+    },
+    {
+      "configuration": "Full (6ag.+targ.+graph)",
+      "ddo_stage2_path": "outputs/stage2/ddo_sample_full/stage2_relations.json",
+      "ddo_stage3_path": "outputs/stage3/ddo_sample_full/stage3_graphs.json",
+      "ddo_stage4_path": "outputs/stage4/ddo_sample_full/stage4_judgments.json",
+      "human_stage4_path": "outputs/stage4/human_eval_full/stage4_judgments.json",
+      "human_eval_results_path": "outputs/human_eval/human_eval_results.json"
+    }
+  ]
+}

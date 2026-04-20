@@ -1,0 +1,161 @@
+{
+  "schema_version": "2.1",
+  "description": "Maps each proposal ablation row to the on-disk outputs produced by scripts/run_all_ablations.py. Populated by the orchestrator; read by evaluate_ablations.py and downstream notebooks.",
+  "split": "ddo_sample",
+  "model": {
+    "provider": "vllm-local",
+    "name": "Qwen2.5-3B-Instruct",
+    "path": "~/models/Qwen2.5-3B-Instruct"
+  },
+  "topic_file": "data/eval/ddo_sample_topics.jsonl",
+  "orchestrator_script": "scripts/run_all_ablations.py",
+  "evaluator_script": "scripts/evaluate_ablations.py",
+  "notes": {
+    "no_external_apis": "All 8 configurations run on local Qwen via vLLM. No OpenRouter, no OpenAI, no Groq.",
+    "gpt4_substitution": "Row 'direct_judge' is labelled 'GPT-4 Direct Judge' in the proposal. Since no external API is used, it is implemented as a strong-judge pass using the same local Qwen on zero-shot pairwise stage-2 relations (no graph). This isolates the targeted-attacks contribution (RQ3: targeted_attacks - direct_judge) and partially overlaps with the graph contribution.",
+    "persuasiveness_column": "Per-config 'pers_mean_5' in the output is the model's self-reported confidence rescaled to 0-5 Likert. It is a machine-persuasiveness proxy, NOT the human Likert rating described in the proposal. Human ratings require separate annotation of the 50-topic test set.",
+    "ablation_design_change_v2_1": "schema_version 2.1 fixed a design collapse where direct_judge==targeted_attacks (both shared stage 2) and six_agents==full (both used graph). Now: direct_judge runs stage 2 with zero-shot pairwise attack labelling, targeted_attacks runs stage 2 with Ozaki targeted prompts. six_agents runs WITHOUT graph; full runs WITH graph. This cleanly isolates each ablation variable.",
+    "missing_outputs_behavior": "If a config's stage4_judgments.json is missing on disk, evaluate_ablations.py marks that row 'missing' in the ablation table and the orchestrator can be re-run to produce it."
+  },
+  "ablations": [
+    {
+      "row": 1,
+      "name": "single_llm",
+      "proposal_label": "Single-LLM Baseline",
+      "runner": "baseline (single)",
+      "agents": 0,
+      "targeted_attacks": false,
+      "uses_graph": false,
+      "stage4_path": "outputs/stage4/<split>_single_llm/stage4_judgments.json"
+    },
+    {
+      "row": 2,
+      "name": "cot",
+      "proposal_label": "+ CoT Baseline",
+      "runner": "baseline (cot)",
+      "agents": 0,
+      "targeted_attacks": false,
+      "uses_graph": false,
+      "stage4_path": "outputs/stage4/<split>_cot/stage4_judgments.json"
+    },
+    {
+      "row": 3,
+      "name": "direct_judge",
+      "proposal_label": "+ GPT-4 Direct Judge (local Qwen, zero-shot stage 2, no graph)",
+      "runner": "direct_judge",
+      "agents": 6,
+      "targeted_attacks": false,
+      "uses_graph": false,
+      "stage1_path": "outputs/stage1/<split>/stage1_arguments.json",
+      "stage2_path": "outputs/stage2/<split>_direct_judge/stage2_relations.json",
+      "stage3_path": null,
+      "stage4_path": "outputs/stage4/<split>_direct_judge/stage4_judgments.json",
+      "reuses": "Stage 1 of 'full' run. Stage 2 runs independently with zero-shot pairwise Attack/Support/None labeller.",
+      "change_note": "In schema v2.0 this config shared stage 2 with targeted_attacks, producing identical outputs. Fixed in v2.1 by giving it its own stage 2 path with MAJ_STAGE2_TARGETED=0."
+    },
+    {
+      "row": 4,
+      "name": "two_agents",
+      "proposal_label": "+ 2 Agents",
+      "runner": "full_pipeline",
+      "agents": 2,
+      "n_pro": 1,
+      "n_con": 1,
+      "targeted_attacks": true,
+      "uses_graph": true,
+      "stage1_path": "outputs/stage1/<split>_two_agents/stage1_arguments.json",
+      "stage2_path": "outputs/stage2/<split>_two_agents/stage2_relations.json",
+      "stage3_path": "outputs/stage3/<split>_two_agents/stage3_graphs.json",
+      "stage4_path": "outputs/stage4/<split>_two_agents/stage4_judgments.json"
+    },
+    {
+      "row": 5,
+      "name": "six_agents",
+      "proposal_label": "+ 6 Agents (no graph)",
+      "runner": "six_agents_no_graph",
+      "agents": 6,
+      "n_pro": 3,
+      "n_con": 3,
+      "targeted_attacks": true,
+      "uses_graph": false,
+      "stage1_path": "outputs/stage1/<split>/stage1_arguments.json",
+      "stage2_path": "outputs/stage2/<split>/stage2_relations.json",
+      "stage3_path": null,
+      "stage4_path": "outputs/stage4/<split>_six_agents/stage4_judgments.json",
+      "change_note": "In schema v2.0 this config used the graph and was identical to full. Fixed in v2.1: six_agents now runs WITHOUT the graph so full - six_agents cleanly isolates graph gain.",
+      "reuses": "Stage 1 + Stage 2 of 'full' run (6 agents + targeted stage 2)."
+    },
+    {
+      "row": 6,
+      "name": "targeted_attacks",
+      "proposal_label": "+ Targeted Attacks (Ozaki prompt, no graph)",
+      "runner": "targeted_no_graph",
+      "agents": 6,
+      "n_pro": 3,
+      "n_con": 3,
+      "targeted_attacks": true,
+      "uses_graph": false,
+      "stage1_path": "outputs/stage1/<split>/stage1_arguments.json",
+      "stage2_path": "outputs/stage2/<split>_targeted_attacks/stage2_relations.json",
+      "stage3_path": null,
+      "stage4_path": "outputs/stage4/<split>_targeted_attacks/stage4_judgments.json",
+      "reuses": "Stage 1 of 'full' run. Stage 2 runs independently with MAJ_STAGE2_TARGETED=1 (Ozaki-style targeted prompt).",
+      "change_note": "In schema v2.0 this config shared stage 2 with direct_judge, producing identical outputs. Fixed in v2.1 by giving it its own stage 2 path."
+    },
+    {
+      "row": 7,
+      "name": "dung_no_agents",
+      "proposal_label": "+ Dung Graph (2 agents, zero-shot, with graph)",
+      "runner": "full_pipeline",
+      "agents": 2,
+      "n_pro": 1,
+      "n_con": 1,
+      "targeted_attacks": false,
+      "uses_graph": true,
+      "stage1_path": "outputs/stage1/<split>_dung_no_agents/stage1_arguments.json",
+      "stage2_path": "outputs/stage2/<split>_dung_no_agents/stage2_relations.json",
+      "stage3_path": "outputs/stage3/<split>_dung_no_agents/stage3_graphs.json",
+      "stage4_path": "outputs/stage4/<split>_dung_no_agents/stage4_judgments.json",
+      "note": "Minimal agents + zero-shot attack prompt + full graph. Isolates the graph contribution under non-targeted labelling."
+    },
+    {
+      "row": 8,
+      "name": "full",
+      "proposal_label": "Full (6ag.+targ.+graph)",
+      "runner": "full_pipeline",
+      "agents": 6,
+      "n_pro": 3,
+      "n_con": 3,
+      "targeted_attacks": true,
+      "uses_graph": true,
+      "stage1_path": "outputs/stage1/<split>/stage1_arguments.json",
+      "stage2_path": "outputs/stage2/<split>/stage2_relations.json",
+      "stage3_path": "outputs/stage3/<split>/stage3_graphs.json",
+      "stage4_path": "outputs/stage4/<split>/stage4_judgments.json",
+      "note": "Canonical full pipeline. The 'full' config writes to the bare <split>/ directory (no suffix) so other configs can reuse it as a shared baseline."
+    }
+  ],
+  "rq_mapping": {
+    "RQ1_graph_contribution": {
+      "compare": ["six_agents", "full"],
+      "description": "full - six_agents: adds graph on top of 6-agent targeted pipeline. This is now the clean graph isolation.",
+      "metric": "acc_mean_pct delta"
+    },
+    "RQ2_agent_diversity": {
+      "compare": ["two_agents", "six_agents"],
+      "description": "six_agents - two_agents: agent count 2 vs 6",
+      "caveat": "two_agents uses graph; six_agents does not. The comparison is confounded. A cleaner agent-count ablation would require a 'two_agents_no_graph' config.",
+      "metrics": ["acc_mean_pct", "attack_diversity.mean_unique_attacked"]
+    },
+    "RQ3_targeted_vs_zeroshot_attacks": {
+      "compare": ["direct_judge", "targeted_attacks"],
+      "description": "targeted_attacks - direct_judge: same inputs, same judge, same no-graph setup. Only stage 2 labelling prompt differs (zero-shot pairwise vs Ozaki targeted).",
+      "metrics": ["stage2_label_counts.Attack", "acc_mean_pct"]
+    }
+  },
+  "known_design_caveats": [
+    "RQ2 comparison (two_agents vs six_agents) is confounded because two_agents still uses graph while six_agents does not. To cleanly isolate agent count, a 9th config 'two_agents_no_graph' would be needed.",
+    "The 'direct_judge' config is not a true GPT-4 comparison. It is a local Qwen run using zero-shot pairwise stage 2 relations without graph context. It substitutes for the proposal's GPT-4 Direct Judge row.",
+    "dung_no_agents uses zero-shot stage 2, so it is not a clean 'graph only' ablation. It is a '2-agent zero-shot + graph' ablation."
+  ]
+}

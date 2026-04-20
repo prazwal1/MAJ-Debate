@@ -13,7 +13,7 @@
 \newcommand{\DebateSumArgs}{187{,}000}
 \newcommand{\WhichSideTopics}{14{,}000}
 \newcommand{\WhichSideArgs}{28{,}000}
-\newcommand{\HumanTestTopics}{200}
+\newcommand{\HumanTestTopics}{50}
 \newcommand{\TruncLimit}{256}
 \newcommand{\MinArgPairs}{4}
 \newcommand{\AptMean}{18.7}
@@ -81,11 +81,18 @@ annotated examples) for argument strength calibration; neither dataset
 provides debate-level winner labels. Judgment accuracy is evaluated against
 the DDO dataset~\citep{durmus2019ddo} (\DDOTotal{} crowd-voted debates,
 \DDOSample-debate evaluation sample) as an external benchmark, supplemented
-by a new \HumanTestTopics-topic human-judged test set. Ablation studies
-isolate the contribution of each component; we hypothesize that the full
-graph-grounded pipeline will substantially outperform single-LLM baselines
-in human agreement and persuasiveness. An interactive demo and open-source
-code are released to advance reproducible agentic argumentation research.
+by a new \HumanTestTopics-topic human-judged test set. We treat DDO labels
+as a measure of \textit{audience-level persuasion} on a public platform,
+and use the human test set to approximate \textit{adjudicated logical
+correctness} where such labels are available. We further analyse cases
+where persuasion and correctness disagree, to interpret whether
+MAJ-Debate's graph-grounded verdicts align more closely with rhetorical
+convincingness or logical validity. Ablation studies isolate the
+contribution of each component; we hypothesize that the full graph-grounded
+pipeline will substantially outperform single-LLM baselines in both
+persuasion agreement and explainable correctness-oriented judgment.
+An interactive demo and open-source code are released to advance
+reproducible agentic argumentation research.
 \end{abstract}
 
 %% ── 1. Introduction ─────────────────────────────────────────────────────────
@@ -215,11 +222,15 @@ Figure~\ref{fig:pipeline}.
         two to three Pro agents and two to three Con agents independently
         generate three to five stance-specific arguments per topic.
         Each agent is instantiated with a \textit{structured persona template}
-        that specifies three controlled dimensions: (i)~a \textit{reasoning
+        that specifies three controlled dimensions plus an optional
+        \textit{demographic-conditioning} field: (i)~a \textit{reasoning
         style} (e.g., logical-empirical, ethical-normative, or
         economic-consequentialist), (ii)~a \textit{rhetorical constraint}
         (e.g., cite evidence, appeal to principle, or challenge implicit
         premises), and (iii)~a \textit{stance label} (Pro or Con).
+        When enabled, demographic conditioning is implemented as a brief
+        neutral framing stub (e.g., ``first-generation student advocate'')
+        that can influence argument emphasis without changing the topic.
         Example personas include \textit{Rationalist Pro} (logical-empirical,
         evidence-first) and \textit{Rights Defender Con}
         (ethical-normative, principle-based).
@@ -399,8 +410,10 @@ in a tie (Figure~\ref{fig:ddo_winners}).
 balanced across topics (Figure~\ref{fig:ddo_sample}); within this sample,
 \DDOSamplePro\% are Pro wins and \DDOSampleCon\% are Con wins.
 MAJ-Debate is run on each topic and its verdict is compared against the
-crowd vote, providing judgment ground truth that is fully independent of
-our annotation process.
+crowd vote, providing an independent signal of \textit{public
+persuasiveness}. Importantly, we do not interpret DDO agreement as pure
+logical correctness; where adjudicated logical labels are available, we
+report correctness agreement separately and analyse disagreement cases.
 
 \paragraph{New Human Test Set}
 \HumanTestTopics{} debate topics spanning policy, ethics, and science, each
@@ -503,6 +516,18 @@ prompts a single model to reason step-by-step before judging; and
 without the Dung graph. These baselines enable clean isolation of the graph
 contribution (RQ1) and the multi-agent contribution (RQ2).
 
+In addition to the internal ablations and single-model baselines, we
+perform direct head-to-head comparisons against two published end-to-end
+systems that are most similar to our pipeline: (1)~\textbf{Debate-to-Write}
+(Hu et al., 2025) -- persona-driven multi-agent generation followed by a
+GPT-4 judge (no graph), and (2)~\textbf{LLM Debate Opponent} (Ozaki et al.,
+2025) -- the full implicit-premise attack pipeline. Both systems are
+re-implemented and evaluated on the exact same \DDOSample-debate DDO sample
+and \HumanTestTopics-topic human test set, allowing direct comparison of
+persuasion agreement (DDO) and correctness agreement (human) metrics. This
+addresses the need for external validation against existing techniques and
+provides a clearer picture of MAJ-Debate's relative performance.
+
 \paragraph{Ablation configurations}
 Starting from the single-LLM baseline, we incrementally add components
 in eight configurations (Table~\ref{tab:ablation}), studying three factors:
@@ -512,13 +537,19 @@ vs.\ targeted premise attack~\citep{ozaki2025llmdebate}), and
 
 \paragraph{Metrics}
 \begin{itemize}
-  \item \textbf{Judgment accuracy (DDO)}: \% agreement with crowd-voted
-        winner on the \DDOSample-debate external benchmark.
-  \item \textbf{Judgment accuracy (human)}: \% agreement with majority
-        annotator label on the \HumanTestTopics-topic in-group test set.
+  \item \textbf{Persuasion agreement (DDO)}: \% agreement with crowd-voted
+    winner on the \DDOSample-debate external benchmark (audience
+    persuasion / convincingness).
+  \item \textbf{Correctness agreement (human)}: \% agreement with majority
+    annotator label on the \HumanTestTopics-topic in-group test set,
+    treated as an approximation of adjudicated logical correctness.
   \item \textbf{Persuasiveness}: Likert 1 to 5 human rating.
   \item \textbf{Attack diversity}: number of unique premises attacked.
   \item \textbf{Graph stability}: size of the grounded extension.
+  \item \textbf{Disagreement \& regret}: conditional performance on
+    subsets where crowd persuasion labels and adjudicated correctness
+    labels agree vs. disagree; we report simple 0/1 regret (error rate)
+    with respect to each label space and the regret gap between them.
 \end{itemize}
 
 Human evaluation on the in-group test set is conducted on 50 topics by
@@ -580,8 +611,10 @@ Accuracy is measured on the DDO external benchmark as primary signal.}
 We will report on: (a)~false-positive attack labels from Stage~2;
 (b)~topics where no grounded extension exists and the fallback activates;
 (c)~judge brain verdicts conflicting with the extension outcome; and
-(d)~cases where MAJ-Debate disagrees with the DDO crowd vote, analyzed
-by topic category to identify systematic failure modes.
+(d)~cases where MAJ-Debate disagrees with the DDO crowd vote, analysed
+by topic category and by whether crowd and logical labels disagree, to
+distinguish systematic system failures from persuasion--correctness label
+divergence.
 
 %% ── 7. Discussion ───────────────────────────────────────────────────────────
 \section{Discussion}
@@ -595,7 +628,7 @@ that is independent of our annotators. We expect grounded extensions to
 resolve attack cycles that confound prompt-only judges, particularly in
 closely-matched topics.
 
-\paragraph{RQ2 - Agent diversity}
+\paragraph{RQ2 - Agent diversity and additional agent factors}
 Comparing 2-agent and 5-agent configurations in terms of attack diversity
 and persuasiveness tests whether persona breadth surfaces non-obvious
 premises. Because persona categories are held fixed across configurations
@@ -603,11 +636,41 @@ premises. Because persona categories are held fixed across configurations
 distinct reasoning styles instantiated, not to random prompt variation.
 \citet{hu2025debate2write} demonstrate diversity gains from persona-driven
 generation; we extend this to a judgment setting with a controlled design.
+Beyond agent count and reasoning style, agent behavior may also be shaped
+by \emph{demographic framing}, whereby agents are instantiated with
+attributes such as age group, regional background, or occupational role
+that could shift which implicit premises are surfaced and which values are
+treated as shared. A related dimension is \emph{epistemic stance}: an
+agent may default to empirical evidence, appeals to principle, or
+challenges to the opponent's premises, and while this is partially
+captured by our existing persona categories, it is not independently
+varied. We identify both as open variables; the current
+ablation isolates agent count as the primary factor, and demographic and
+epistemic dimensions are deferred to future work. This scoping is reported
+transparently so that RQ2 results are not over-generalized beyond
+agent-count effects.
 
 \paragraph{RQ3 - Implicit premise modeling}
 Zero-shot prompting is compared against the targeted implicit-premise attack
 approach of \citet{ozaki2025llmdebate}. We expect targeted prompting to
 label a higher proportion of non-obvious cross-stance attacks.
+
+\paragraph{Persuasion versus logical correctness}
+MAJ-Debate is designed to optimize for \emph{structured argumentative
+validity}, defined as whether the winning side holds more undefeated
+arguments under Dung semantics, rather than audience persuasion. This distinction
+matters because DDO crowd votes reflect which side a public audience found
+more persuasive, which can diverge from what is logically stronger. We
+therefore treat DDO agreement as a \emph{proxy signal} for judgment
+quality rather than as ground truth for correctness. Systematic
+disagreement between MAJ-Debate and DDO will be analysed by topic
+category: cases where the crowd voted for the rhetorically vivid side
+despite weaker argumentative structure are expected to constitute a primary
+failure mode. The human test set, annotated with a rubric that explicitly
+distinguishes logical strength from persuasiveness, provides a second
+signal that decouples the two. Future work should investigate whether a
+system optimising for Dung-grounded correctness can be adapted to predict
+perceived persuasion when a persuasion-oriented output is required.
 
 \paragraph{Computational scope}
 The two-round Stage~1 design produces approximately $N \approx 20$ arguments
@@ -636,6 +699,10 @@ platform and may not correspond to logical correctness. Both limitations
 are reported transparently and cross-group validation is identified as
 future work. Dung semantics assume binary attack relations; graded
 relations and cross-lingual debate are identified as high-value extensions.
+Additionally, the current persona framework does not vary demographic
+framing or fine-grained epistemic stance as independent factors; argument
+diversity results should therefore be interpreted as lower bounds on what
+a more fully varied agent pool might achieve.
 
 %% ── 8. Summary of Progress ──────────────────────────────────────────────────
 \section{Summary of Progress}

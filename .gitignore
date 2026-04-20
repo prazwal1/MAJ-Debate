@@ -1,13 +1,74 @@
-# Python-generated files
+# Python
 __pycache__/
-*.py[oc]
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local secrets and machine-specific config
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build / packaging
 build/
 dist/
 wheels/
-*.egg-info
+*.egg-info/
 
-# Virtual environments
-.venv
-ignore
-.env
-uv.lock
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Local bundles / archives
+*.tar
+*.tar.gz
+*.zip
+output_.tar.gz
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Generated outputs
+outputs/
+!outputs/.gitkeep
+
+# Generated report artifacts
+progress_report/*.aux
+progress_report/*.bbl
+progress_report/*.blg
+progress_report/*.log
+progress_report/*.out
+progress_report/*.pdf
+progress_report/fig_*.png
+progress_report/fig_*.pdf
+
+# Generated proposal artifacts
+proposal/*.aux
+proposal/*.bbl
+proposal/*.blg
+proposal/*.log
+proposal/*.out
+proposal/*.pdf
+
+# Script/runtime caches
+scripts/__pycache__/
+tools/__pycache__/
+
+# Extra markdown artifacts: keep only the root README.md going forward
+*.md
+!README.md

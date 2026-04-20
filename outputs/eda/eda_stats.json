@@ -90,12 +90,15 @@
   "ddo_total_debates": 78376,
   "ddo_n_topics": 23,
   "ddo_sample_size": 500,
-  "ddo_mode": "simulated",
-  "ddo_pro_win_pct": 52.0,
-  "ddo_con_win_pct": 41.2,
-  "ddo_tie_pct": 6.9,
+  "ddo_mode": "real_local",
+  "ddo_raw_file": "..\\..\\28327019\\DDO_dataset\\01_rawdata\\debates.json",
+  "ddo_sample_file": "..\\..\\data\\eval\\ddo_sample_topics.jsonl",
+  "ddo_pro_win_pct": 25.4,
+  "ddo_con_win_pct": 34.1,
+  "ddo_tie_pct": 40.5,
   "ddo_modal_rounds": 3,
-  "ddo_sample_pro_pct": 60.8,
-  "ddo_sample_con_pct": 39.2,
-  "ddo_complete_debates": 60492
+  "ddo_sample_pro_pct": 39.4,
+  "ddo_sample_con_pct": 60.6,
+  "ddo_complete_debates": 41766,
+  "ddo_sample_domains": 8
 }

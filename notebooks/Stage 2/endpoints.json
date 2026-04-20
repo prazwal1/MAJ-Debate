@@ -1,0 +1,18 @@
+[
+  {
+    "name": "prajwal_pc",
+    "type": "ollama",
+    "base_url": "http://localhost:11434",
+    "model": "gemma3:latest",
+    "concurrency": 2,
+    "timeout": 180
+  },
+  {
+    "name": "saugat_mac",
+    "type": "ollama",
+    "base_url": "http://192.168.1.8:11434",
+    "model": "gemma3:12b",
+    "concurrency": 2,
+    "timeout": 180
+  }
+]

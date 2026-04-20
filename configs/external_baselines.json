@@ -1,0 +1,12 @@
+{
+  "baselines": [
+    {
+      "system": "Debate-to-Write",
+      "results_path": "outputs/experiments/external_baselines/debate_to_write_results.json"
+    },
+    {
+      "system": "LLM Debate Opponent",
+      "results_path": "outputs/experiments/external_baselines/llm_debate_opponent_results.json"
+    }
+  ]
+}
