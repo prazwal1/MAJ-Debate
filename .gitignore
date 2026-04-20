@@ -54,7 +54,6 @@ progress_report/*.blg
 progress_report/*.log
 progress_report/*.out
 progress_report/*.pdf
-progress_report/fig_*.png
 progress_report/fig_*.pdf
 
 # Generated proposal artifacts
