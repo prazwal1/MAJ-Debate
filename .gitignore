@@ -72,3 +72,11 @@ tools/__pycache__/
 *.md
 !README.md
 dpo/ 
+
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.pdf
+*.synctex.gz

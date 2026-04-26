@@ -9,6 +9,7 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+\usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{array}
 
@@ -68,12 +69,12 @@
 % ─────────────────────────────────────────────────────────────────────────────
 
 \title{MAJ-Debate: Multi-Agent LLM Argumentation Framework\\
-       for Automated Debate Judgment: Final Report}
+       for Automated Debate Judgment}
 
-\author{Prajwal Bhandary \quad Saugat Shakya \quad Prabidhi Pyakurel \quad Rahul Shakya \\[0.3em]
+\author{Prajwal Bhandary \quad Saugat Shakya \quad Prabidhi Pyakurel \quad Rahul Shakya  \quad Shah Md Jobayer \\[0.3em]
         {\small\itshape Natural Language Processing Course, Master's Program} \\
         {\small\itshape Asian Institute of Technology (AIT), Pathum Thani, Thailand} \\
-        {\small\ttfamily \{st126380,st125974,st125982,st125986\}@ait.ac.th}}
+        {\small\ttfamily \{st126380,st125974,st125982,st125986,st126404\}@ait.ac.th}}
 
 \date{}
 
@@ -246,7 +247,7 @@ Figure~\ref{fig:pipeline}.
 \begin{tikzpicture}[
     node distance=0.7cm and 0.5cm,
     stage/.style={rectangle, draw, rounded corners=4pt, text centered,
-                  minimum height=1.0cm, minimum width=8cm, font=\small},
+                  minimum height=1.0cm, minimum width=12cm, font=\small},
     agent/.style={rectangle, draw, rounded corners=3pt, text centered,
                   minimum height=0.8cm, minimum width=1.8cm, font=\footnotesize},
     arr/.style={->, thick},
@@ -257,7 +258,7 @@ Figure~\ref{fig:pipeline}.
 \node[agent, fill=red!15,   right=1.0cm of p3] (c1) {Con 1};
 \node[agent, fill=red!15,   right=0.4cm of c1] (c2) {Con 2};
 \node[agent, fill=red!15,   right=0.4cm of c2] (c3) {Con 3};
-\node[above=0.15cm of p2, font=\small\bfseries, anchor=south]
+\node[above=0.15cm of p3, xshift=1.4cm, font=\small\bfseries, anchor=south]
     {Stage 1: Side-Picking Agents (R1 + R2)};
 \node[stage, fill=orange!20, below=1.0cm of p3, xshift=1.3cm] (atk)
     {Stage 2: Attack-Relation Brain \quad
@@ -332,6 +333,49 @@ however, scoring on defended positions yields:
 \end{align*}
 giving a \textbf{graph verdict of CON} (correct, margin~$-1.0$\,pp).
 
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=1.8cm,
+  every node/.style={circle, draw, thick, minimum size=0.9cm, font=\small},
+  pro/.style={fill=blue!15, draw=blue!60},
+  con/.style={fill=red!15, draw=red!60},
+  att/.style={-{Stealth[length=6pt]}, thick},
+]
+
+%% Nodes
+\node[pro] (P1) at (0, 0)   {$p_1$};
+\node[pro] (P2) at (0,-1.8) {$p_2$};
+\node[pro] (P3) at (0,-3.6) {$p_3$};
+
+\node[con] (C1) at (3.5, 0)   {$c_1$};
+\node[con] (C2) at (3.5,-1.8) {$c_2$};
+\node[con] (C3) at (3.5,-3.6) {$c_3$};
+
+%% Con attacks Pro
+\draw[att, red!70] (C1) -- (P1);
+\draw[att, red!70] (C2) -- (P2);
+\draw[att, red!70] (C3) -- (P3);
+
+%% Con arguments are unattacked (grounded, defended)
+%% Add a dummy attacker on Pro side that gets rebutted
+\draw[att, blue!60] (P1) to[bend left=20] (C2);
+\draw[att, red!70]  (C1) to[bend left=20] (P1);  %% C1 defeats P1's attack
+
+%% Labels
+\node[draw=none, fill=none, font=\footnotesize\itshape, text=blue!70]
+  at (-1.1, -1.8) {Pro};
+\node[draw=none, fill=none, font=\footnotesize\itshape, text=red!70]
+  at (4.6, -1.8)  {Con};
+
+\end{tikzpicture}
+\caption{Simplified Dung attack graph (6 nodes). Con arguments $c_1$–$c_3$
+are unattacked and form the grounded extension; $p_1$'s counter-attack on
+$c_2$ is defeated by $c_1$. Scoring defended positions yields
+\textsc{Pro}\,=\,0.0, \textsc{Con}\,=\,1.0 $\Rightarrow$ verdict \textbf{CON}.}
+\label{fig:dung-simple}
+\end{figure}
+
 \paragraph{Stage 4 -- Judge override.}
 Despite \texttt{used\_graph=True}, the judge returns:
 \begin{quote}
@@ -345,14 +389,6 @@ This is a canonical \textbf{E3 -- judge override} failure
 (\S\ref{sec:error}).
 The final pipeline output is \textbf{PRO~$\times$} versus gold \textbf{CON}.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/fig_running_example.png}
-  \caption{Four-stage pipeline walkthrough for LOGIC\_002 (``penguins can
-  fly''). The Dung graph correctly returns CON but the Stage~4 judge
-  overrides the verdict to PRO, illustrating failure mode E3.}
-  \label{fig:running}
-\end{figure}
 
 %% ── 4. Dataset and Exploratory Analysis ───────────────────────────────────────
 \section{Dataset and Exploratory Analysis}

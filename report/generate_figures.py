@@ -103,34 +103,86 @@ def fig_ablation_actual():
 # ─────────────────────────────────────────────────────────────────────────────
 # Fig 2  Persuasion vs Correctness scatter
 # ─────────────────────────────────────────────────────────────────────────────
+# pip install adjustText
+from adjustText import adjust_text
+
 def fig_persuasion_vs_correctness():
-    fig, ax = plt.subplots(figsize=(6.5, 5))
-    labels = ['Single-LLM','CoT','Direct\nJudge','2 Agents',
-              '6 Agents','Targeted\nAtk','Dung\n(no ag.)','Full']
-    colors = [C_BASE] + [C_DDO]*7
+    fig, ax = plt.subplots(figsize=(8, 6))
 
-    sc = ax.scatter(DDO_ACC, LOG_ACC, c=colors, s=120, zorder=5)
+    labels = ['Single-LLM', 'CoT', 'Direct Judge', '2 Agents',
+              '6 Agents', 'Targeted Atk', 'Dung (no ag.)', 'Full']
+    colors = [C_BASE] + [C_DDO] * 7
+
+    ax.scatter(DDO_ACC, LOG_ACC, c=colors, s=140, zorder=5)
+
+    # Manually tuned offsets (x_offset, y_offset) in points for each label
+    offsets = {
+        'Single-LLM':    (  8,   5),
+        'CoT':           (  8,   5),
+        'Direct Judge':  (-85,  12),
+        '2 Agents':      (  8,   8),
+        '6 Agents':      ( -75, -18),  # ← push left & down, away from Full
+        'Targeted Atk':  (-85,  -8),
+        'Dung (no ag.)': (  8,   8),
+        'Full':          (  8,  -16),  # ← push right & down
+    }
+
+
     for i, lbl in enumerate(labels):
-        ax.annotate(lbl, (DDO_ACC[i], LOG_ACC[i]),
-                    textcoords='offset points', xytext=(6, 3), fontsize=7.5)
+        dx, dy = offsets[lbl]
+        ax.annotate(
+            lbl,
+            xy=(DDO_ACC[i], LOG_ACC[i]),
+            xytext=(dx, dy),
+            textcoords='offset points',
+            fontsize=8.5,
+            fontweight='medium',
+            arrowprops=dict(
+                arrowstyle='-',
+                color='#aaaaaa',
+                lw=0.7,
+                shrinkA=0,
+                shrinkB=4,
+            ) if abs(dx) > 15 else None,
+        )
 
-    # Diagonal (DDO = Logic)
-    ax.plot([35, 65], [35, 65], 'k--', lw=0.8, alpha=0.4, label='DDO = Logic line')
-    ax.set_xlabel('DDO Accuracy — Persuasion (%)')
-    ax.set_ylabel('Logic Accuracy — Correctness (%)')
-    ax.set_title('Persuasion vs Correctness Agreement per Configuration')
-    ax.set_xlim(35, 65)
-    ax.set_ylim(48, 85)
-    ax.grid(alpha=0.3)
+    # Gap annotations — always directly below each point
 
-    # Gap annotation
-    for i in range(N):
+    gap_offset = {
+        'Single-LLM':    (  8, -14),
+        'CoT':           (  8, -14),
+        'Direct Judge':  (-85,   0),
+        '2 Agents':      (  8, -14),
+        '6 Agents':      (-75, -30),   # ← follows label downward
+        'Targeted Atk':  (-85, -14),
+        'Dung (no ag.)': (  8, -14),
+        'Full':          (  8, -28),
+    }
+
+    for i, lbl in enumerate(labels):
         gap = LOG_ACC[i] - DDO_ACC[i]
-        ax.annotate(f'+{gap:.0f}pp', (DDO_ACC[i], LOG_ACC[i]),
-                    textcoords='offset points', xytext=(-28, -12),
-                    fontsize=6, color='gray')
+        dx, dy = gap_offset[lbl]
+        ax.annotate(
+            f'+{gap:.0f}pp',
+            xy=(DDO_ACC[i], LOG_ACC[i]),
+            xytext=(dx, dy),
+            textcoords='offset points',
+            fontsize=6.5,
+            color='#888888',
+            ha='left',
+        )
 
+    # Diagonal reference line
+    ax.plot([35, 65], [35, 65], 'k--', lw=0.8, alpha=0.35, label='DDO = Logic line')
+
+    ax.set_xlabel('DDO Accuracy — Persuasion (%)', fontsize=11)
+    ax.set_ylabel('Logic Accuracy — Correctness (%)', fontsize=11)
+    ax.set_title('Persuasion vs Correctness Agreement per Configuration', fontsize=12)
+    ax.set_xlim(35, 65)
+    ax.set_ylim(46, 87)
+    ax.grid(alpha=0.25)
     ax.legend(fontsize=8)
+
     fig.tight_layout()
     p = OUT / 'fig_persuasion_vs_correctness.png'
     fig.savefig(p, dpi=150, bbox_inches='tight')
