@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAJ Debate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ── Top bar ─────────────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <span class="site-name">MAJ Debate</span>
+    <span class="model-label" id="header-model"></span>
+  </header>
+
+  <!-- ── Input zone ──────────────────────────────────────────────────────── -->
+  <div class="input-zone">
+    <div class="input-row">
+      <textarea id="topic-input" class="topic-input"
+        placeholder="Enter a debate topic or resolution…"
+        rows="2"></textarea>
+      <button class="run-btn" id="run-btn" onclick="startDebate()">Analyze</button>
+    </div>
+
+    <!-- Config strip -->
+    <div class="config-strip">
+
+      <span class="strip-label">PRO</span>
+      <label class="chip-check"><input type="checkbox" name="pro" value="pro_rationalist" checked /><span>Rationalist</span></label>
+      <label class="chip-check"><input type="checkbox" name="pro" value="pro_ethicist"    checked /><span>Ethicist</span></label>
+      <label class="chip-check"><input type="checkbox" name="pro" value="pro_futurist"    checked /><span>Futurist</span></label>
+
+      <div class="strip-sep"></div>
+
+      <span class="strip-label">CON</span>
+      <label class="chip-check"><input type="checkbox" name="con" value="con_skeptic"    checked /><span>Skeptic</span></label>
+      <label class="chip-check"><input type="checkbox" name="con" value="con_rights"     checked /><span>Rights</span></label>
+      <label class="chip-check"><input type="checkbox" name="con" value="con_pragmatist" checked /><span>Pragmatist</span></label>
+
+      <div class="strip-sep"></div>
+
+      <select id="model-select" class="strip-select" title="Model">
+        <option value="">Loading…</option>
+      </select>
+
+      <div class="strip-sep"></div>
+
+      <details class="adv-details">
+        <summary class="strip-label adv-toggle">Settings ▾</summary>
+        <div class="adv-popup">
+          <label>R1 args<input type="number" id="r1-args" value="3" min="1" max="5" /></label>
+          <label>R2 args<input type="number" id="r2-args" value="2" min="1" max="4" /></label>
+          <label>Conf threshold<input type="number" id="conf-threshold" value="0.65" min="0.1" max="1.0" step="0.05" /></label>
+          <label>Batch size<input type="number" id="batch-size" value="40" min="5" max="100" /></label>
+          <label class="check-label"><input type="checkbox" id="targeted-attacks" checked /> Targeted attacks</label>
+          <label>NVIDIA API key<input type="password" id="api-key-input" placeholder="nvapi-… (uses env var if blank)" /></label>
+          <div class="adv-stages">
+            <span>Stages:</span>
+            <label class="check-label"><input type="checkbox" class="stage-cb" value="1" checked />Arguments</label>
+            <label class="check-label"><input type="checkbox" class="stage-cb" value="2" checked />Relations</label>
+            <label class="check-label"><input type="checkbox" class="stage-cb" value="3" checked />Graph</label>
+            <label class="check-label"><input type="checkbox" class="stage-cb" value="4" checked />Verdict</label>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- ── Content ─────────────────────────────────────────────────────────── -->
+  <div class="content">
+
+    <!-- Empty state -->
+    <div id="state-empty" class="state">
+      <div class="empty-body">
+        <p class="empty-hint">Enter a topic and press <strong>Analyze</strong>.</p>
+        <div class="pipeline-row">
+          <div class="pipeline-step"><span class="step-n">1</span><span>Arguments</span></div>
+          <span class="step-arr">→</span>
+          <div class="pipeline-step"><span class="step-n">2</span><span>Relations</span></div>
+          <span class="step-arr">→</span>
+          <div class="pipeline-step"><span class="step-n">3</span><span>Dung Graph</span></div>
+          <span class="step-arr">→</span>
+          <div class="pipeline-step"><span class="step-n">4</span><span>Verdict</span></div>
+        </div>
+        <p class="empty-note">Stage 3 uses cross-stance semantics: PRO and CON form separate argument sets; attacks only occur between sets.</p>
+      </div>
+    </div>
+
+    <!-- Running state -->
+    <div id="state-running" class="state hidden">
+      <div class="run-topic" id="run-topic"></div>
+      <div class="progress-list">
+        <div class="prog-item" id="pi-1"><div class="prog-dot"></div><div class="prog-text"><span class="prog-name">Argument Generation</span><span class="prog-msg" id="pm-1"></span></div></div>
+        <div class="prog-item" id="pi-2"><div class="prog-dot"></div><div class="prog-text"><span class="prog-name">Relation Analysis</span><span class="prog-msg" id="pm-2"></span></div></div>
+        <div class="prog-item" id="pi-3"><div class="prog-dot"></div><div class="prog-text"><span class="prog-name">Dung Semantics</span><span class="prog-msg" id="pm-3"></span></div></div>
+        <div class="prog-item" id="pi-4"><div class="prog-dot"></div><div class="prog-text"><span class="prog-name">Verdict</span><span class="prog-msg" id="pm-4"></span></div></div>
+      </div>
+      <div class="log-box" id="log-box"></div>
+    </div>
+
+    <!-- Results state -->
+    <div id="state-results" class="state hidden results-state">
+
+      <div class="results-bar">
+        <div class="results-topic-text" id="res-topic"></div>
+        <div class="results-tags" id="res-tags"></div>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab active" data-tab="verdict"   onclick="switchTab(this)">Verdict</button>
+        <button class="tab"        data-tab="arguments" onclick="switchTab(this)">Arguments</button>
+        <button class="tab"        data-tab="relations" onclick="switchTab(this)">Relations</button>
+        <button class="tab"        data-tab="graph"     onclick="switchTab(this)">Graph</button>
+      </div>
+
+      <!-- Verdict -->
+      <div class="tab-panel active" id="tab-verdict">
+        <div class="verdict-grid">
+          <div class="v-main">
+            <div class="verdict-word" id="v-word">—</div>
+            <div class="verdict-source">LLM Judge</div>
+            <div class="conf-row">
+              <span class="conf-lbl">Confidence</span>
+              <div class="conf-track"><div class="conf-fill" id="conf-fill"></div></div>
+              <span class="conf-num" id="conf-num">—</span>
+            </div>
+            <div class="v-section">
+              <div class="v-section-label">Rationale</div>
+              <p id="v-rationale">—</p>
+            </div>
+            <div class="v-section" id="v-kills" style="display:none">
+              <div class="v-section-label">Killing attacks</div>
+              <ul id="v-kills-list"></ul>
+            </div>
+          </div>
+          <div class="v-aside">
+            <div class="v-card" id="gv-card">
+              <div class="v-card-label">Dung Graph Verdict</div>
+              <div id="gv-body">—</div>
+            </div>
+            <div class="v-card" id="sem-card">
+              <div class="v-card-label">Argumentation Semantics</div>
+              <div id="sem-body">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arguments -->
+      <div class="tab-panel hidden" id="tab-arguments">
+        <div class="args-split">
+          <div class="args-col">
+            <div class="args-hdr pro-hdr">PRO <span class="args-count" id="pro-count"></span></div>
+            <div id="pro-list"></div>
+          </div>
+          <div class="args-col">
+            <div class="args-hdr con-hdr">CON <span class="args-count" id="con-count"></span></div>
+            <div id="con-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Relations -->
+      <div class="tab-panel hidden" id="tab-relations">
+        <div class="rel-bar">
+          <button class="filter active" data-f="all"     onclick="filterRels(this)">All</button>
+          <button class="filter"        data-f="Attack"  onclick="filterRels(this)">Attack</button>
+          <button class="filter"        data-f="Support" onclick="filterRels(this)">Support</button>
+          <span id="rel-lbl" class="rel-lbl"></span>
+        </div>
+        <div class="table-scroll">
+          <table class="rel-table">
+            <thead><tr><th>Source</th><th>→</th><th>Target</th><th>Conf</th><th>Premise</th></tr></thead>
+            <tbody id="rel-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Graph -->
+      <div class="tab-panel hidden" id="tab-graph">
+        <div class="graph-wrap">
+          <div class="graph-legend">
+            <div class="leg-title">Dung Graph</div>
+            <div class="leg-note">Cross-stance attacks only.<br/>PRO ↔ CON, never PRO ↔ PRO.</div>
+            <div class="leg-items">
+              <div class="leg-row"><div class="leg-dot pro-dot"></div>PRO argument</div>
+              <div class="leg-row"><div class="leg-dot con-dot"></div>CON argument</div>
+              <div class="leg-row"><div class="leg-dot grnd-dot"></div>Grounded ext.</div>
+              <div class="leg-row"><div class="leg-line atk-line"></div>Attack</div>
+              <div class="leg-row"><div class="leg-line sup-line"></div>Support</div>
+            </div>
+            <div class="leg-stats" id="leg-stats"></div>
+            <div class="leg-btns">
+              <button class="leg-btn" onclick="fitGraph()">Fit</button>
+              <button class="leg-btn" onclick="togglePhysics()">Physics</button>
+              <button class="leg-btn" onclick="toggleLabels()">Labels</button>
+            </div>
+          </div>
+          <div id="graph-canvas" class="graph-canvas"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Error state -->
+    <div id="state-error" class="state hidden">
+      <div class="error-body">
+        <div class="error-title">Error</div>
+        <div class="error-msg" id="error-msg"></div>
+        <button class="run-btn small" onclick="resetApp()">Reset</button>
+      </div>
+    </div>
+
+  </div><!-- .content -->
+</div><!-- .app -->
+
+<script src="/static/app.js"></script>
+</body>
+</html>

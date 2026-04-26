@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python scripts/score_form_responses.py --responses-csv outputs/MAJ-Debate_Selected_Failure_Review_Responses.csv --topics data/eval/google_form/form_topics.jsonl)"
+    ]
+  }
+}

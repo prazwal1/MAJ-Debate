@@ -1,20 +1,10 @@
-{"topic_id": "DDO_42535", "topic_text": "Our economy is carp thanks to the fed", "domain": "Economics", "benchmark_label": "PRO"}
-{"topic_id": "LOGIC_042", "topic_text": "Resolved: Humans only use 10 percent of their brains.", "domain": "empirical_fact", "benchmark_label": "CON"}
-{"topic_id": "DDO_12845", "topic_text": "Creationism Should Not be Taught in the Public Sphere of Education", "domain": "Education", "benchmark_label": "CON"}
-{"topic_id": "LOGIC_047", "topic_text": "Resolved: All known living organisms use DNA as their primary genetic material.", "domain": "empirical_fact", "benchmark_label": "CON"}
-{"topic_id": "DDO_24747", "topic_text": "Health insurance profits are not a major part of health care costs in the U.S.", "domain": "Health", "benchmark_label": "PRO"}
-{"topic_id": "LOGIC_029", "topic_text": "Resolved: 'If we ban plastic straws, we must ban all plastics, causing economic collapse' follows valid reasoning.", "domain": "fallacy", "benchmark_label": "CON"}
-{"topic_id": "DDO_00763", "topic_text": "A Maximally Great Being is Possible", "domain": "Philosophy", "benchmark_label": "CON"}
-{"topic_id": "LOGIC_022", "topic_text": "Resolved: The argument 'climate science is wrong because some 1970s scientists predicted cooling' is logically valid.", "domain": "fallacy", "benchmark_label": "CON"}
-{"topic_id": "DDO_10337", "topic_text": "Certain power groups with major influences are attempting to make a world government.", "domain": "Politics", "benchmark_label": "PRO"}
-{"topic_id": "LOGIC_033", "topic_text": "Resolved: The square root of 2 is a rational number.", "domain": "math_fact", "benchmark_label": "CON"}
-{"topic_id": "DDO_50580", "topic_text": "Science is more dangerous than religion", "domain": "Science", "benchmark_label": "CON"}
-{"topic_id": "LOGIC_036", "topic_text": "Resolved: There exists a largest prime number.", "domain": "math_fact", "benchmark_label": "CON"}
-{"topic_id": "DDO_23583", "topic_text": "Government is a necessary evil to protect the freedoms of human individuals.", "domain": "Society", "benchmark_label": "PRO"}
-{"topic_id": "LOGIC_016", "topic_text": "Resolved: The statement 'nothing is absolutely true' is itself absolutely true.", "domain": "paradox", "benchmark_label": "CON"}
-{"topic_id": "DDO_43204", "topic_text": "People are too dependent on technology.", "domain": "Technology", "benchmark_label": "CON"}
-{"topic_id": "LOGIC_011", "topic_text": "Resolved: The concept of an omnipotent being who can create a stone so heavy that it cannot lift leads to a logical contradiction.", "domain": "paradox", "benchmark_label": "PRO"}
-{"topic_id": "DDO_17999", "topic_text": "Ethanol subsidies and RFS should be eliminated by the US Federal Government", "domain": "Economics", "benchmark_label": "PRO"}
-{"topic_id": "LOGIC_002", "topic_text": "Resolved: If some birds can fly and penguins are birds, then penguins can fly.", "domain": "syllogism", "benchmark_label": "CON"}
-{"topic_id": "DDO_11736", "topic_text": "College is better than high school.", "domain": "Education", "benchmark_label": "CON"}
-{"topic_id": "LOGIC_004", "topic_text": "Resolved: If all philosophers are thinkers and some thinkers are mathematicians, then some philosophers are mathematicians.", "domain": "syllogism", "benchmark_label": "CON"}
+{"topic_id": "LOGIC_002", "topic_text": "Resolved: If some birds can fly and penguins are birds, then penguins can fly.", "domain": "syllogism", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,judge_overrode_graph,pro_skew"}
+{"topic_id": "LOGIC_005", "topic_text": "Resolved: If it is raining then the ground is wet; the ground is wet, therefore it is raining.", "domain": "syllogism", "benchmark_label": "CON", "selected_reason": "full_wrong,pro_skew"}
+{"topic_id": "LOGIC_030", "topic_text": "Resolved: The number of people who hold a belief is sufficient to determine whether that belief is true.", "domain": "fallacy", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,pro_skew"}
+{"topic_id": "LOGIC_042", "topic_text": "Resolved: Humans only use 10 percent of their brains.", "domain": "empirical_fact", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,judge_overrode_graph,pro_skew"}
+{"topic_id": "LOGIC_045", "topic_text": "Resolved: Antibiotics are effective against viral infections such as the common cold.", "domain": "empirical_fact", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,judge_overrode_graph,pro_skew"}
+{"topic_id": "DDO_18636", "topic_text": "Evolution is not supported by science or evidence", "domain": "Science", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,pro_skew"}
+{"topic_id": "DDO_50560", "topic_text": "Science is a major threat to human existence", "domain": "Philosophy", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,pro_skew"}
+{"topic_id": "DDO_61182", "topic_text": "Teenagers Should Have Unlimited Access to Computers and The Internet", "domain": "Technology", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,pro_skew"}
+{"topic_id": "DDO_70417", "topic_text": "This House believes that the United States Federal Government should add probiotics to all candy.", "domain": "Health", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,pro_skew"}
+{"topic_id": "DDO_10643", "topic_text": "children should be allowed to box in school.", "domain": "Education", "benchmark_label": "CON", "selected_reason": "full_wrong,baseline_disagrees,pro_skew"}

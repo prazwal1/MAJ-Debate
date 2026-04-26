@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MAJ-Debate Failure Inspector</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="mark"></span>
+        <div>
+          <h1>Failure Inspector</h1>
+          <p>Selected 10 debate topics</p>
+        </div>
+      </div>
+      <div class="filters">
+        <input id="search" type="search" placeholder="Search topics" />
+        <select id="flagFilter" aria-label="Failure filter">
+          <option value="all">All failure signals</option>
+          <option value="full_wrong">Full pipeline wrong</option>
+          <option value="baseline_disagrees">Baseline disagrees</option>
+          <option value="judge_overrode_graph">Judge overrode graph</option>
+          <option value="pro_skew">PRO skew</option>
+        </select>
+      </div>
+      <section id="globalExperiments" class="global-experiments"></section>
+      <nav id="topicList" class="topic-list"></nav>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p id="eyebrow" class="eyebrow">Loading</p>
+          <h2 id="topicTitle">MAJ-Debate</h2>
+        </div>
+        <div id="verdictChips" class="chips"></div>
+      </header>
+
+      <section class="metrics" id="metrics"></section>
+
+      <section id="experimentSummary" class="experiment-summary"></section>
+
+      <section class="split">
+        <div class="panel graph-panel">
+          <div class="panel-head">
+            <div>
+              <h3>Argument Graph</h3>
+              <p id="graphCaption">Kept Attack and Support relations</p>
+            </div>
+            <div class="graph-controls">
+              <button data-edge-filter="all" class="active">All</button>
+              <button data-edge-filter="Attack">Attack</button>
+              <button data-edge-filter="Support">Support</button>
+            </div>
+          </div>
+          <svg id="graph" role="img" aria-label="Argument relation graph"></svg>
+          <div id="selectedEdge" class="edge-detail">Select a node or edge to inspect it.</div>
+        </div>
+
+        <div class="panel graph-panel">
+          <div class="panel-head">
+            <div>
+              <h3>No-Internal Graph</h3>
+              <p id="graphCaptionNoInternal">Cross-stance attacks only</p>
+            </div>
+          </div>
+          <svg id="graphNoInternal" role="img" aria-label="No internal attack graph"></svg>
+          <div id="selectedEdgeNoInternal" class="edge-detail">Selected10 no-internal graph not loaded for this topic.</div>
+        </div>
+      </section>
+
+      <section class="split split-secondary">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Verdicts</h3>
+              <p>Model outputs against gold and graph verdicts</p>
+            </div>
+          </div>
+          <div id="verdictTable" class="verdict-table"></div>
+        </div>
+      </section>
+
+      <section class="tabs">
+        <button data-tab="arguments" class="active">Arguments</button>
+        <button data-tab="relations">Relations</button>
+        <button data-tab="rationales">Rationales</button>
+      </section>
+
+      <section id="detailPanel" class="detail-panel"></section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
